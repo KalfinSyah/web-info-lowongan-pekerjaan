@@ -7,6 +7,7 @@
             <li><a href='tambahLoker.php'>Tambah Loker</a></li>
             <li><a href='tipsMencariPekerjaan.php'>Tips Mencari Pekerjaan</a></li>
             <li><a href="./php/logic/Logout.php">Logout</a></li>
+            <li><a href='uploadCV.php'>uploadCV</a></li>
         </ul>
     </nav>
 </div>
