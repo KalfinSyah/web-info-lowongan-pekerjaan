@@ -2,9 +2,6 @@
     require_once('./php/logic/SessionChecker.php');
     $sessionChecker = new SessionChecker();
 
-    require_once('./php/template/StructureHTML.php');
-    $structureHTML = new StructureHTML();
-
     require_once('./php/logic/Loker.php');
     $loker = new Loker();
     $loker = $loker->getLoker();
