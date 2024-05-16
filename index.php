@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="css/index.css">
     <script>
         function openUploadForm() {
-            window.open('upload_cv.php', 'Upload CV', 'width=600,height=400');
+            window.open('uploadCV.php', 'Upload CV', 'width=600,height=400');
         }
     </script>
 </head>
