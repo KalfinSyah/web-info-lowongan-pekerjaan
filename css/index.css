@@ -66,7 +66,20 @@ form {
     display: inline;
 }
 
-input[type="submit"] {
+input[type="file"] {
+    display: none;
+}
+
+input[type="file"] + label {
+    background-color: #343a40;
+    color: #ffffff;
+    padding: 8px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+input[type="submit"],
+button.apply {
     background-color: #343a40;
     color: #ffffff;
     border: none;
@@ -75,6 +88,7 @@ input[type="submit"] {
     cursor: pointer;
 }
 
-input[type="submit"]:hover {
+input[type="submit"]:hover,
+button.apply:hover {
     background-color: #23272b;
 }
