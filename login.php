@@ -1,14 +1,12 @@
 <?php
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        require_once('./php/logic/Login.php');
-        $login = new Login();
-        $login->loginUser($_POST['email'], $_POST['password'], 'index.php');
-    }
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    require_once('./php/logic/Login.php');
+    $login = new Login();
+    $login->loginUser($_POST['email'], $_POST['password']);
+}
 ?>
 
-
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -23,7 +21,6 @@
                 <label for="">Email</label>
                 <input type="email" name="email" required>
             </div>
-
             <div>
                 <label for="">Password</label>
                 <input type="password" name="password" required>

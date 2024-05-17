@@ -1,14 +1,14 @@
 <?php
-    require_once('./php/template/StructureHTML.php');
-    $structureHTML = new StructureHTML();
+require_once('./php/template/StructureHTML.php');
+$structureHTML = new StructureHTML();
 
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        require_once('./php/logic/Register.php');
-        $register = new Register();
-        $register->registerUser($_POST['username'], $_POST['email'], $_POST['password'], $_POST['confirmpassword']);
-    }
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    require_once('./php/logic/Register.php');
+    $register = new Register();
+    $register->registerUser($_POST['username'], $_POST['email'], $_POST['password'], $_POST['confirmpassword'], $_POST['role']);
+}
 ?>
-    
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -35,6 +35,13 @@
             <div>
                 <label for="">Confirm Password</label>
                 <input type="password" name="confirmpassword" required>
+            </div>
+            <div>
+                <label for="">Role</label>
+                <select name="user_type" required>
+                    <option value="pencarikerja">Pencari Kerja</option>
+                    <option value="perusahaan">Perusahaan</option>
+                </select>
             </div>
         </section>
 
