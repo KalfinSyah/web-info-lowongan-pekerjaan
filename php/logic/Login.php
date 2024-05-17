@@ -19,12 +19,11 @@ class Login extends Database {
                 $row = mysqli_fetch_assoc($result);
                 if (password_verify($password, $row['password'])) {
                     $_SESSION['email'] = $email;
-                    $_SESSION['role'] = $row['role'];
+                    $_SESSION['user_type'] = $row['user_type'];
 
-                    // Redirect based on user role
-                    if ($row['role'] == 'perusahaan') {
+                    if ($row['user_type'] == 'perusahaan') {
                         header("Location: index_perusahaan.php");
-                    } else {
+                    } elseif ($row['user_type'] == 'pencarikerja') {
                         header("Location: index.php");
                     }
                     exit();

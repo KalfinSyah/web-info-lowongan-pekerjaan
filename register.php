@@ -5,7 +5,7 @@ $structureHTML = new StructureHTML();
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     require_once('./php/logic/Register.php');
     $register = new Register();
-    $register->registerUser($_POST['username'], $_POST['email'], $_POST['password'], $_POST['confirmpassword'], $_POST['role']);
+    $register->registerUser($_POST['username'], $_POST['email'], $_POST['password'], $_POST['confirmpassword'], $_POST['user_type']);
 }
 ?>
 
