@@ -21,6 +21,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <form action="register.php" method="post">
         <section>
             <div>
+                <label for="">Role</label>
+                <select name="user_type" required>
+                    <option value="pencarikerja">Pencari Kerja</option>
+                    <option value="perusahaan">Perusahaan</option>
+                </select>
+            </div>
+            <div>
                 <label for="">Username</label>
                 <input type="text" name="username" required>
             </div>
@@ -35,13 +42,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div>
                 <label for="">Confirm Password</label>
                 <input type="password" name="confirmpassword" required>
-            </div>
-            <div>
-                <label for="">Role</label>
-                <select name="user_type" required>
-                    <option value="pencarikerja">Pencari Kerja</option>
-                    <option value="perusahaan">Perusahaan</option>
-                </select>
             </div>
         </section>
 

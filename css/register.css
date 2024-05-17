@@ -1,74 +1,67 @@
 body {
-    background-color: #B4D4FF;
-    background-size: cover;
-    background-attachment: fixed;
-    background-repeat: no-repeat;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    font-weight: bolder;
+    font-family: Arial, sans-serif;
+    background-color: #f0f4f8;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
 
 form {
-    display: grid;
-    justify-items: center;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: fit-content;
-}
-
-section {
-    background-color: #EEF5FF;
+    background-color: #ffffff;
     border-radius: 10px;
-    border: 1px solid black;
-    box-shadow: 3px 3px 10px;
-    display: block;
     padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    width: 100%;
 }
 
-div:nth-child(2), div:nth-child(3) {
-    margin: 20px 0;
+form section div {
+    margin-bottom: 15px;
 }
 
-div {
-    width: fit-content;
-}
-div * {
+form label {
     display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
 }
 
-label {
-    color: #3d3d3d;
+form input[type="text"], form input[type="email"], form input[type="password"], form select {
+    width: calc(100% - 20px);
+    padding: 10px;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) inset;
 }
 
-input, select {
-    border-radius: 10px;
-    margin: 5px 0 0 0;
-    width: 200px;
-}
-
-p {
-    color: #3d3d3d;
-    margin-top: 20px;
-    margin-bottom: 25px;
-    text-shadow: 4px 4px 4px;
-}
-
-a {
-    color: #3d3d3d;
-    text-decoration: none;
-}
-
-a:hover {
-    color: #176B87;
-}
-
-button {
-    box-shadow: 3px 3px 10px;
-    background-color: #EEF5FF;
-    border: 1px solid black;
-    border-radius: 10px;
+form button[type="submit"] {
+    background-color: #0066cc;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
     cursor: pointer;
-    padding: 8px;
-    width: 210px;
+    width: 100%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+form button[type="submit"]:hover {
+    background-color: #005bb5;
+}
+
+form p {
+    text-align: center;
+}
+
+form a {
+    color: #0066cc;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+form a:hover {
+    text-decoration: underline;
 }

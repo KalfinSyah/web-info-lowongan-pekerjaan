@@ -8,7 +8,7 @@ class Register extends Database {
 
     public function registerUser($username, $email, $password, $confirmPassword, $role) {
         $mistake = '';
-        if (strlen($username) < 4) {
+        if (strlen($username) < 4) { 
             echo '<script>alert("USERNAME MINIMAL 4 KARAKTER");</script>';
             $mistake .= '1';
         }
@@ -39,7 +39,6 @@ class Register extends Database {
             $email = mysqli_real_escape_string($this->getConnection(), $email);
             $password = mysqli_real_escape_string($this->getConnection(), $password);
             $passwordHash = password_hash($password, PASSWORD_DEFAULT);
-            
             $user_type = mysqli_real_escape_string($this->getConnection(), $role);
 
             $sql = "INSERT INTO users (username, email, password, user_type) VALUES ('$username', '$email', '$passwordHash', '$user_type')";
