@@ -10,33 +10,37 @@
 ?>
     
 <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/register.css">
+    <title>Register</title>
+</head>
+<body>
+    <form action="register.php" method="post">
+        <section>
+            <div>
+                <label for="">Username</label>
+                <input type="text" name="username" required>
+            </div>
+            <div>
+                <label for="">Email</label>
+                <input type="email" name="email" required>
+            </div>
+            <div>
+                <label for="">Password</label>
+                <input type="password" name="password" required>
+            </div>
+            <div>
+                <label for="">Confirm Password</label>
+                <input type="password" name="confirmpassword" required>
+            </div>
+        </section>
 
-<?php echo $structureHTML->getTopStructure("Register", "css/register.css"); ?>
-            <form action="register.php" method="post">
-                <section>
-                    <div>
-                        <label for="">Username</label>
-                        <input type="text" name="username" required>
-                    </div>
+        <p>Sudah mempunyai akun? <a href="login.php">klik disini</a></p>
 
-                    <div>
-                        <label for="">Email</label>
-                        <input type="email" name="email" required>
-                    </div>
-
-                    <div>
-                        <label for="">Password</label>
-                        <input type="password" name="password" required>
-                    </div>
-
-                    <div>
-                        <label for="">Confirm Password</label>
-                        <input type="password" name="confirmpassword" required>
-                    </div>
-                </section>
-
-                <p>Sudah mempunyai akun? <a href="login.php">klik disini</a></p>
-
-                <button type="submit">REGISTER</button>
-            </form>
-<?php echo $structureHTML->getBottomStructure(); ?>
+        <button type="submit">REGISTER</button>
+    </form>
+</body>
+</html>

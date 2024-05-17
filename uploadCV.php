@@ -2,9 +2,6 @@
     require_once('./php/logic/SessionChecker.php');
     $sessionChecker = new SessionChecker();
 
-    require_once('./php/template/StructureHTML.php');
-    $structureHTML = new StructureHTML();
-
     if ($_SERVER['REQUEST_METHOD'] == "POST") {
         $target_dir = "uploads/";
         $target_file = $target_dir . basename($_FILES["cv"]["name"]);

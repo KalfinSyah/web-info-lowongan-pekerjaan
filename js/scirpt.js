@@ -2,6 +2,6 @@ function showAlert() {
     alert("Registration successful!");
 }
 
-function getPage(buttonId) {
-    window.location.href = 'render.php?button_clicked=' + buttonId;
+function openUploadForm() {
+    window.open('uploadCV.php', 'Upload CV', 'width=600,height=400');
 }

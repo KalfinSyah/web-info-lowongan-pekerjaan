@@ -2,9 +2,6 @@
     require_once('./php/logic/SessionChecker.php');
     $sessionChecker = new SessionChecker();
 
-    require_once('./php/template/StructureHTML.php');
-    $structureHTML = new StructureHTML();
-
     require_once('./php/logic/Loker.php');
     $loker = new Loker();
     $loker = $loker->getLoker();
@@ -20,59 +17,66 @@
     }
 ?>
 
-<?php echo $structureHTML->getTopStructure("List Loker", "css/index.css"); ?>
 
-<?php require_once('./php/template/navbar.php'); ?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/index.css">
+    <title>List Loker</title>
+</head>
+<body>
+    <?php require_once('./php/template/navbar.php'); ?>
+    
+    <div class="container">
+        <h2>Daftar Lowongan Pekerjaan</h2>
 
-<div class="container">
-    <h2>Daftar Lowongan Pekerjaan</h2>
+        <form action="" method="get">
+            <select name="category">
+                <option value="profesi">Profesi</option>
+                <option value="posisi">Posisi</option>
+                <option value="gaji">Gaji</option>
+                <option value="syaratpendidikan">Syarat Pendidikan</option>
+                <option value="lokasi">Lokasi</option>
+                <option value="usiamin">Usia Minimal</option>
+                <option value="usiamax">Usia Maksimal</option>
+                <option value="prioritasgender">Gender</option>
+            </select>
+            <input type="text" name="searchresult" id="">
+            <input type="submit" value="Submit">
 
-    <form action="" method="get">
+            <?php if ($reset == true) { echo "<a href='listLoker.php'>Reset</a>"; } ?>
+        </form>
 
-        <select name="category">
-            <option value="profesi">Profesi</option>
-            <option value="posisi">Posisi</option>
-            <option value="gaji">Gaji</option>
-            <option value="syaratpendidikan">Syarat Pendidikan</option>
-            <option value="lokasi">Lokasi</option>
-            <option value="usiamin">Usia Minimal</option>
-            <option value="usiamax">Usia Maksimal</option>
-            <option value="prioritasgender">Gender</option>
-        </select>
-        <input type="text" name="searchresult" id="">
-        <input type="submit" value="Submit">
-
-        <?php if ($reset == true) { echo "<a href='listLoker.php'>Reset</a>"; } ?>
-    </form>
-
-    <table>
-        <thead>
-            <tr>
-                <th >Profesi</th>
-                <th>Posisi</th>
-                <th>Gaji</th>
-                <th>Syarat Pendidikan</th>
-                <th>Lokasi</th>
-                <th>Usia Minimal</th>
-                <th>Usia Maksimal</th>
-                <th>Diprioritaskan untuk</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach ($loker as $row) : ?>
+        <table>
+            <thead>
                 <tr>
-                    <td><?php echo $row['profesi']; ?></td>
-                    <td><?php echo $row['posisi']; ?></td>
-                    <td><?php echo "Rp " . $row['gaji']; ?></td>
-                    <td><?php echo $row['syaratpendidikan']; ?></td>
-                    <td><?php echo $row['lokasi']; ?></td>
-                    <td><?php echo $row['usiamin']; ?></td>
-                    <td><?php echo $row['usiamax']; ?></td>
-                    <td><?php echo $row['prioritasgender']; ?></td>
+                    <th >Profesi</th>
+                    <th>Posisi</th>
+                    <th>Gaji</th>
+                    <th>Syarat Pendidikan</th>
+                    <th>Lokasi</th>
+                    <th>Usia Minimal</th>
+                    <th>Usia Maksimal</th>
+                    <th>Diprioritaskan untuk</th>
                 </tr>
-            <?php endforeach; ?>
-        </tbody>
-    </table>
-</div>
-
-<?php echo $structureHTML->getBottomStructure(); ?>
+            </thead>
+            <tbody>
+                <?php foreach ($loker as $row) : ?>
+                    <tr>
+                        <td><?php echo $row['profesi']; ?></td>
+                        <td><?php echo $row['posisi']; ?></td>
+                        <td><?php echo "Rp " . $row['gaji']; ?></td>
+                        <td><?php echo $row['syaratpendidikan']; ?></td>
+                        <td><?php echo $row['lokasi']; ?></td>
+                        <td><?php echo $row['usiamin']; ?></td>
+                        <td><?php echo $row['usiamax']; ?></td>
+                        <td><?php echo $row['prioritasgender']; ?></td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

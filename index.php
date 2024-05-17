@@ -12,20 +12,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lowongan Pekerjaan</title>
     <link rel="stylesheet" href="css/index.css">
-    <script>
-        function openUploadForm() {
-            window.open('uploadCV.php', 'Upload CV', 'width=600,height=400');
-        }
-    </script>
+    <script src="js/scirpt.js"></script>
+    <title>Lowongan Pekerjaan</title>
 </head>
+
 <body>
     <?php require_once('./php/template/navbar.php'); ?>
 
     <div class="container">
         <p> Selamat datang di tempat di mana Anda dapat menjelajahi peluang karier yang menarik dan mendapatkan wawasan berharga tentang bagaimana mencari pekerjaan yang sesuai dengan keinginan dan keterampilan Anda. Di sini, Anda akan menemukan beragam lowongan pekerjaan yang menantang, serta tip-tips berguna untuk memperkuat strategi pencarian pekerjaan Anda. Mari bergabung dalam perjalanan menuju kesuksesan karier Anda, dan bersama-sama kita akan membuka pintu-pintu menuju masa depan yang cerah!</p>
-        
+                
         <h2>Daftar Lowongan Pekerjaan</h2>
         <table>
             <thead>
@@ -60,7 +57,7 @@
                 <?php endfor; ?>
             </tbody>
         </table>
-
+        
         <h2>Tips Mencari Pekerjaan</h2>
         <p>Melangkah ke dunia pekerjaan yang dinamis seringkali membutuhkan lebih dari sekadar menyerahkan resume Anda. Inilah saatnya untuk mengasah strategi pencarian pekerjaan Anda sehingga Anda tidak hanya mencari pekerjaan, tetapi juga menempatkan diri Anda di jalur yang tepat untuk sukses.</p>
         <h3>1. Pahami Diri Anda</h3>
@@ -75,7 +72,5 @@
         <p>Investasikan waktu dan energi Anda dalam mengasah keterampilan seperti kemampuan berkomunikasi, kepemimpinan, manajemen waktu, serta keahlian dalam teknologi dan otomatisasi. Keterampilan yang kuat akan membuat Anda lebih unggul dalam lingkungan kerja yang kompetitif.</p>
         <p>Dengan mengikuti tips-tips ini dan mengambil langkah-langkah yang tepat, Anda akan meningkatkan peluang Anda untuk mencapai kesuksesan dalam pencarian pekerjaan. Ingatlah bahwa setiap langkah kecil menuju impian karier Anda memiliki potensi untuk membuka pintu menuju kesuksesan yang lebih besar!</p>
     </div>
-
-    <?php echo $structureHTML->getBottomStructure(); ?>
 </body>
 </html>
