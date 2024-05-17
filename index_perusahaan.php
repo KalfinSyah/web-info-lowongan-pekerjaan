@@ -2,11 +2,6 @@
 require_once('./php/logic/SessionChecker.php');
 $sessionChecker = new SessionChecker();
 
-if (!$sessionChecker->isCompanyLoggedIn()) {
-    header('Location: login.php');
-    exit();
-}
-
 if ($_SERVER['REQUEST_METHOD'] === 'POST' &&
     isset($_POST['profesi'], $_POST['posisi'], $_POST['gaji'], $_POST['syaratpendidikan'], 
         $_POST['lokasi'], $_POST['usiamin'], $_POST['usiamax'], $_POST['prioritasgender'])) {

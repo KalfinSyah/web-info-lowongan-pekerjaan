@@ -23,7 +23,7 @@ class Login extends Database {
 
                     if ($row['user_type'] == 'perusahaan') {
                         header("Location: index_perusahaan.php");
-                    } elseif ($row['user_type'] == 'pencarikerja') {
+                    } elseif ($row['user_type'] == 'user') {
                         header("Location: index.php");
                     }
                     exit();
