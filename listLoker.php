@@ -30,26 +30,29 @@
     <?php require_once('./php/template/navbar.php'); ?>
     
     <div class="container">
-        <h2>Daftar Lowongan Pekerjaan</h2>
+        <div class="allDaftarLokerDiv">
+            <h2>Daftar Lowongan Pekerjaan</h2>
 
-        <form action="" method="get">
-            <select name="category">
-                <option value="profesi">Profesi</option>
-                <option value="posisi">Posisi</option>
-                <option value="gaji">Gaji</option>
-                <option value="syaratpendidikan">Syarat Pendidikan</option>
-                <option value="lokasi">Lokasi</option>
-                <option value="usiamin">Usia Minimal</option>
-                <option value="usiamax">Usia Maksimal</option>
-                <option value="prioritasgender">Gender</option>
-            </select>
-            <input type="text" name="searchresult" id="">
-            <input type="submit" value="Submit">
+            <form action="" method="get">
+                <select name="category">
+                    <option value="profesi">Profesi</option>
+                    <option value="posisi">Posisi</option>
+                    <option value="gaji">Gaji</option>
+                    <option value="syaratpendidikan">Syarat Pendidikan</option>
+                    <option value="lokasi">Lokasi</option>
+                    <option value="usiamin">Usia Minimal</option>
+                    <option value="usiamax">Usia Maksimal</option>
+                    <option value="prioritasgender">Gender</option>
+                </select>
+                
+                <input type="text" name="searchresult" id="">
+                <input type="submit" value="Submit">
 
-            <?php if ($reset == true) { echo "<a href='listLoker.php'>Reset</a>"; } ?>
-        </form>
+                <?php if ($reset == true) { echo "<a href='listLoker.php'>Reset</a>"; } ?>
+            </form>
+        </div>
 
-        <table>
+        <table class="tabelAllDaftarLoker">
             <thead>
                 <tr>
                     <th >Profesi</th>

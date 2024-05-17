@@ -19,17 +19,19 @@
     <?php require_once('./php/template/navbar.php'); ?>
 
     <div class="container">
-        <h2>Tips Mencari Pekerjaan</h2>
-        <?php
-            $counter = 0;
-            foreach ($tipsMencariPekerjaan as $row) {
-                echo "<p>" . $row . "</p>";
-                $counter++;
-                if ($counter >= 3) {
-                    break;
+        <div class="allTipsDiv">
+            <h2>Tips Mencari Pekerjaan</h2>
+            <?php
+                $counter = 0;
+                foreach ($tipsMencariPekerjaan as $row) {
+                    echo "<p>" . $row . "</p>";
+                    $counter++;
+                    if ($counter >= 3) {
+                        break;
+                    }
                 }
-            }
-        ?>
+            ?>
+        </div>
     </div>
 </body>
 </html>

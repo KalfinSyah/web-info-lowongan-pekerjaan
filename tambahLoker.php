@@ -37,9 +37,10 @@
     <?php require_once('./php/template/navbar.php'); ?>
 
     <div class="container">
-        <h2>Tambah Lowongan Pekerjaan</h2>
 
-        <form action="" method="post">
+        <form action="" method="post" class="formTambahLoker">
+            <h2>Tambah Lowongan Pekerjaan</h2>
+
             <label for="profesi">Profesi</label><br>
             <input type="text" id="profesi" name="profesi" required><br>
 
