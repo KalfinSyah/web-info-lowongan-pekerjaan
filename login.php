@@ -5,7 +5,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $login->loginUser($_POST['email'], $_POST['password']);
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,9 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <input type="password" name="password" required>
             </div>
         </section>
-
         <p>Belum mempunyai akun? <a href="register.php">klik disini</a></p>
-
         <button type="submit">LOGIN</button>
     </form>
 </body>
