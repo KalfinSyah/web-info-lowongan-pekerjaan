@@ -12,7 +12,7 @@ $uriSegments = explode("/", $uriArray);
         <?php 
             if($_SESSION['user_type'] == "perusahaan" && $uriSegments[2] == "tambahLoker.php"){
                 echo "<a class='active' href='tambahLoker.php'>Tambah Loker</a>";
-            }else{
+            }elseif($_SESSION['user_type'] == "perusahaan"){
                 echo "<a class='' href='tambahLoker.php'>Tambah Loker</a>";
             }
         ?>
