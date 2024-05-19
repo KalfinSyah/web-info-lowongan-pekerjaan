@@ -34,7 +34,7 @@
     <title>Tambah Loker</title>
 </head>
 <body>
-    <?php require_once('./php/template/navbar.php'); ?>
+    <?php require_once('./php/template/navbar_perusahaan.php'); ?>
 
     <div class="container">
 

@@ -3,44 +3,48 @@
     $sessionChecker = new SessionChecker();
 
     if ($_SERVER['REQUEST_METHOD'] == "POST") {
-        $target_dir = "uploads/";
-        $target_file = $target_dir . basename($_FILES["cv"]["name"]);
-        $uploadOk = 1;
-        $fileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+        if (empty($_FILES["cv"]["name"])) {
+            echo "Anda belum memilih file untuk di upload.<br>";
+        } else {
+            $target_dir = "uploads/";
+            $target_file = $target_dir . basename($_FILES["cv"]["name"]);
+            $uploadOk = 1;
+            $fileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 
-        $check = mime_content_type($_FILES["cv"]["tmp_name"]);
-        if ($check == "application/pdf" ||
-            $check == "application/msword" ||
-            $check == "application/vnd.openxmlformats-officedocument.wordprocessingml.document") {
-                echo "Dokumen valid: " . $check . "<br>";
-                $uploadOk = 1;
-            } else {
-                echo "Dokumen tidak valid.<br>";
+            $check = mime_content_type($_FILES["cv"]["tmp_name"]);
+            if ($check == "application/pdf" ||
+                $check == "application/msword" ||
+                $check == "application/vnd.openxmlformats-officedocument.wordprocessingml.document") {
+                    echo "Dokumen valid: " . $check . "<br>";
+                    $uploadOk = 1;
+                } else {
+                    echo "Dokumen tidak valid.<br>";
+                    $uploadOk = 0;
+                }
+
+            if (file_exists($target_file)) {
+                echo "Maaf, sudah terdapat file yang sama.<br>";
                 $uploadOk = 0;
             }
 
-        if (file_exists($target_file)) {
-            echo "Maaf, sudah terdapat file yang sama.<br>";
-            $uploadOk = 0;
-        }
+            if ($_FILES["cv"]["size"] > 5000000) {
+                echo "File yang Anda upload terlalu besar.<br>";
+                $uploadOk = 0;
+            }
 
-        if ($_FILES["cv"]["size"] > 5000000) {
-            echo "File yang Anda upload terlalu besar.<br>";
-            $uploadOk = 0;
-        }
+            if ($fileType != "pdf" && $fileType != "doc" && $fileType != "docx") {
+                echo "Silahkan upload file dengan format PDF, DOC, atau DOCX.<br>";
+                $uploadOk = 0;
+            }
 
-        if ($fileType != "pdf" && $fileType != "doc" && $fileType != "docx") {
-            echo "Silahkan upload file dengan format PDF, DOC, atau DOCX.<br>";
-            $uploadOk = 0;
-        }
-
-        if ($uploadOk == 0) {
-            echo "Maaf, file tidak terupload.<br>";
-        } else {
-            if (move_uploaded_file($_FILES["cv"]["tmp_name"], $target_file)) {
-                echo "File " . htmlspecialchars(basename($_FILES["cv"]["name"])) . " telah diupload.<br>";
+            if ($uploadOk == 0) {
+                echo "Maaf, file tidak terupload.<br>";
             } else {
-                echo "Maaf, terdapat kesalahan saat mengupload file.<br>";
+                if (move_uploaded_file($_FILES["cv"]["tmp_name"], $target_file)) {
+                    echo "File " . htmlspecialchars(basename($_FILES["cv"]["name"])) . " telah diupload.<br>";
+                } else {
+                    echo "Maaf, terdapat kesalahan saat mengupload file.<br>";
+                }
             }
         }
     }
