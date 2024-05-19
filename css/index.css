@@ -22,20 +22,21 @@ body {
 }
 
 .listPages a {
-    color: #ffffff;
+    color: white;
     text-decoration: none;
     margin: 0 15px;
     font-size: 1em;
     padding: 5px 10px;
     border-radius: 5px;
-    transition: background-color 0.3s ease;
+    /* transition: background-color 0.3s ease; */
 }
 
 .listPages a:hover {
-    background-color: #005bb5;
+    /* background-color: #fa073b; */
+    color: rgb(213, 216, 23) !important;
 }
 
-.listPages a:active {
+.listPages a.active {
     background-color: #004999;
 }
 
