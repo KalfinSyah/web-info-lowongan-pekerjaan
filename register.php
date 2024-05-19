@@ -1,11 +1,9 @@
 <?php
-require_once('./php/template/StructureHTML.php');
-$structureHTML = new StructureHTML();
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     require_once('./php/logic/Register.php');
     $register = new Register();
-    $register->registerUser($_POST['username'], $_POST['email'], $_POST['password'], $_POST['confirmpassword'], $_POST['user_type']);
+    $result = $register->register_user($_POST['nama'], $_POST['email'], $_POST['password'], $_POST['konfirmasi_password'], $_POST['role']);
+    echo $result;
 }
 ?>
 
@@ -22,14 +20,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <section>
             <div>
                 <label for="">Role</label>
-                <select name="user_type" required>
-                    <option value="user">Pencari Kerja</option>
+                <select name="role" required>
+                    <option value="pencari_kerja">Pencari Kerja</option>
                     <option value="perusahaan">Perusahaan</option>
                 </select>
             </div>
             <div>
-                <label for="">Username</label>
-                <input type="text" name="username" required>
+                <label for="">Nama</label>
+                <input type="text" name="nama" required>
             </div>
             <div>
                 <label for="">Email</label>
@@ -40,8 +38,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <input type="password" name="password" required>
             </div>
             <div>
-                <label for="">Confirm Password</label>
-                <input type="password" name="confirmpassword" required>
+                <label for="">Konfirmasi Password</label>
+                <input type="password" name="konfirmasi_password" required>
             </div>
         </section>
 

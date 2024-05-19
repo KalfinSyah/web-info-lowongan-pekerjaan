@@ -6,6 +6,40 @@ body {
     padding: 0;
 }
 
+.pending {
+    color: #ababab;
+    font-weight: bolder;
+}
+.ditolak {
+    color: #ff0000;
+    font-weight: bolder;
+}
+.diterima {
+    color: #008000; 
+    font-weight: bolder;
+}
+
+a.reset, a.apply {
+    background-color: #0066cc;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+}
+
+a.reset:hover, a.apply:hover {
+    background-color: #005bb5;
+}
+
+a.reset:active, a.apply:active {
+    background-color: #004999;
+}
+
 .navbar {
     background-color: #0066cc;
     color: #ffffff;
@@ -57,7 +91,7 @@ h2 {
     color: #0066cc;
 }
 
-.daftarLokerDivHome, .tipsMencariPekerjaanHome, .allDaftarLokerDiv, .formTambahLoker, .allTipsDiv {
+.daftarLokerDivHome, .tipsMencariPekerjaanHome, .allDaftarLokerDiv, .formTambahLoker, .allTipsDiv, .historyDiv {
     background-color: #ffffff;
     border-radius: 10px;
     padding: 20px;

@@ -2,7 +2,8 @@
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     require_once('./php/logic/Login.php');
     $login = new Login();
-    $login->loginUser($_POST['email'], $_POST['password']);
+    $result = $login->login_user($_POST['email'], $_POST['password']);
+    echo $result;
 }
 ?>
 

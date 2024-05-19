@@ -2,14 +2,7 @@
     require_once('./php/logic/SessionChecker.php');
     $sessionChecker = new SessionChecker();
 
-    if (isset($_POST['profesi']) && 
-    isset($_POST['posisi']) && 
-    isset($_POST['gaji']) &&
-    isset($_POST['syaratpendidikan']) && 
-    isset($_POST['lokasi']) &&
-    isset($_POST['usiamin']) && 
-    isset($_POST['usiamax']) && 
-    isset($_POST['prioritasgender'])) {
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
         require_once('./php/logic/TambahLoker.php');
         $tambahLoker = new TambahLoker();
         $tambahLoker->insertDataLoker(
@@ -20,7 +13,8 @@
             $_POST['lokasi'],
             $_POST['usiamin'],
             $_POST['usiamax'],
-            $_POST['prioritasgender']
+            $_POST['prioritasgender'],
+            $_SESSION['id']
         );
     }
 ?>

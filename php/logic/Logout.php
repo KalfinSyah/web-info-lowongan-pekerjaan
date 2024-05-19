@@ -4,7 +4,7 @@
     class Logout extends Database{
         public function __construct() {
             parent::__construct();
-            mysqli_close($this->getConnection());
+            mysqli_close($this->get_connection());
             $_SESSION = [];
             session_destroy();
             header("Location: ../../login.php");

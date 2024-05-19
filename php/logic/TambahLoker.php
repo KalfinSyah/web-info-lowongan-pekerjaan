@@ -6,21 +6,23 @@
             parent::__construct();
         }
 
-        public function insertDataLoker($profesi, $posisi, $gaji, $syaratpendidikan, $lokasi, $usiamin, $usiamax, $prioritasgender) {
-            $profesi = mysqli_real_escape_string($this->getConnection(), $profesi);
-            $posisi = mysqli_real_escape_string($this->getConnection(), $posisi);
-            $gaji = mysqli_real_escape_string($this->getConnection(), $gaji);
-            $syaratpendidikan = mysqli_real_escape_string($this->getConnection(), $syaratpendidikan);
-            $lokasi = mysqli_real_escape_string($this->getConnection(), $lokasi);
-            $usiamin = mysqli_real_escape_string($this->getConnection(), $usiamin);
-            $usiamax = mysqli_real_escape_string($this->getConnection(), $usiamax);
-            $prioritasgender = mysqli_real_escape_string($this->getConnection(), $prioritasgender);
-            $sql = "INSERT INTO loker (profesi, posisi, gaji, syaratpendidikan, lokasi, usiamin, usiamax, prioritasgender) 
-                    VALUES ('$profesi', '$posisi', '$gaji', '$syaratpendidikan', '$lokasi', '$usiamin', '$usiamax', '$prioritasgender')";
-            if (mysqli_query($this->getConnection(), $sql)) {
-                echo '<script>alert("LOWONGAN PEKERJAAN BERHASIL DI TAMBAHKAN!");</script>';
+        public function insertDataLoker($profesi, $posisi, $gaji, $syaratpendidikan, $lokasi, $usiamin, $usiamax, $prioritasgender, $id_perusahaan) {
+            $profesi = mysqli_real_escape_string($this->get_connection(), $profesi);
+            $posisi = mysqli_real_escape_string($this->get_connection(), $posisi);
+            $gaji = mysqli_real_escape_string($this->get_connection(), $gaji);
+            $syaratpendidikan = mysqli_real_escape_string($this->get_connection(), $syaratpendidikan);
+            $lokasi = mysqli_real_escape_string($this->get_connection(), $lokasi);
+            $usiamin = mysqli_real_escape_string($this->get_connection(), $usiamin);
+            $usiamax = mysqli_real_escape_string($this->get_connection(), $usiamax);
+            $prioritasgender = mysqli_real_escape_string($this->get_connection(), $prioritasgender);
+            $id_perusahaan = mysqli_real_escape_string($this->get_connection(), $id_perusahaan);
+            $sql = "INSERT INTO loker (profesi, posisi, gaji, syaratpendidikan, lokasi, usiamin, usiamax, prioritasgender, id_perusahaan) 
+                    VALUES ('$profesi', '$posisi', '$gaji', '$syaratpendidikan', '$lokasi', '$usiamin', '$usiamax', '$prioritasgender', '$id_perusahaan')";
+            if (mysqli_query($this->get_connection(), $sql)) {
+                header("Location: list_loker_perusahaan.php");
+                exit();
             } else {
-                echo '<script>alert("TERJADI ERROR");</script>';
+                return 'Error : Mysqli error';
             }
         }
     }

@@ -7,34 +7,29 @@ class Login extends Database {
         parent::__construct();
     }
 
-    public function loginUser($email, $password) {
-        $email = mysqli_real_escape_string($this->getConnection(), $email);
-        $password = mysqli_real_escape_string($this->getConnection(), $password);
-
+    public function login_user($email, $password) {
+        $email = mysqli_real_escape_string($this->get_connection(), $email);
+        $password = mysqli_real_escape_string($this->get_connection(), $password);
         $sql = "SELECT * FROM users WHERE email = '$email'";
-        $result = mysqli_query($this->getConnection(), $sql);
-
+        $result = mysqli_query($this->get_connection(), $sql);
         if ($result) {
             if (mysqli_num_rows($result) == 1) {
                 $row = mysqli_fetch_assoc($result);
                 if (password_verify($password, $row['password'])) {
-                    $_SESSION['email'] = $email;
-                    $_SESSION['user_type'] = $row['user_type'];
-
-                    if ($row['user_type'] == 'perusahaan') {
-                        header("Location: index_perusahaan.php");
-                    } elseif ($row['user_type'] == 'user') {
-                        header("Location: index.php");
-                    }
+                    $_SESSION['id'] = $row['id'];
+                    $_SESSION['nama'] = $row['nama'];
+                    $_SESSION['email'] = $row['email'];
+                    $_SESSION['role'] = $row['role'];
+                    header("Location: index.php");
                     exit();
                 } else {
-                    echo '<script>alert("USERNAME/PASSWORD SALAH!");</script>';
+                    return 'Error : Password/Email salah';
                 }
             } else {
-                echo '<script>alert("USERNAME/PASSWORD SALAH!");</script>';
+                return 'Error : Password/Email salah';
             }
         } else {
-            echo '<script>alert("USERNAME/PASSWORD SALAH!");</script>';
+            return 'Error :  Mysqli error';
         }
     }
 }

@@ -1,27 +1,27 @@
 <?php
-require_once('./php/logic/SessionChecker.php');
-$sessionChecker = new SessionChecker();
+// require_once('./php/logic/SessionChecker.php');
+// $sessionChecker = new SessionChecker();
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' &&
-    isset($_POST['profesi'], $_POST['posisi'], $_POST['gaji'], $_POST['syaratpendidikan'], 
-        $_POST['lokasi'], $_POST['usiamin'], $_POST['usiamax'], $_POST['prioritasgender'])) {
+// if ($_SERVER['REQUEST_METHOD'] === 'POST' &&
+//     isset($_POST['profesi'], $_POST['posisi'], $_POST['gaji'], $_POST['syaratpendidikan'], 
+//         $_POST['lokasi'], $_POST['usiamin'], $_POST['usiamax'], $_POST['prioritasgender'])) {
 
-    require_once('./php/logic/TambahLoker.php');
-    $tambahLoker = new TambahLoker();
-    $tambahLoker->insertDataLoker(
-        $_POST['profesi'],
-        $_POST['posisi'],
-        $_POST['gaji'],
-        $_POST['syaratpendidikan'],
-        $_POST['lokasi'],
-        $_POST['usiamin'],
-        $_POST['usiamax'],
-        $_POST['prioritasgender']
-    );
-}
+//     require_once('./php/logic/TambahLoker.php');
+//     $tambahLoker = new TambahLoker();
+//     $tambahLoker->insertDataLoker(
+//         $_POST['profesi'],
+//         $_POST['posisi'],
+//         $_POST['gaji'],
+//         $_POST['syaratpendidikan'],
+//         $_POST['lokasi'],
+//         $_POST['usiamin'],
+//         $_POST['usiamax'],
+//         $_POST['prioritasgender']
+//     );
+// }
 ?>
 
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -30,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' &&
     <title>Tambah Loker</title>
 </head>
 <body>
-    <?php require_once('./php/template/navbar.php'); ?>
+    <?php // require_once('./php/template/navbar.php'); ?>
 
     <div class="container">
         <h2>Tambah Lowongan Pekerjaan</h2>
@@ -68,4 +68,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' &&
         </form>
     </div>
 </body>
-</html>
+</html> -->

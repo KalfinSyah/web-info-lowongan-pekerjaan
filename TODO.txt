@@ -1,9 +1,0 @@
-Fitur Aplikasi
-● Register (done)
-● Login (done)
-● Memberikan informasi mengenai lowongan pekerjaan yang tersedia berdasarkan
-lokasi/profesi/gaji/pendidikan terakhir
-● Tips mencari pekerjaan
-● Program pelatihan
-● Menambahkan lowongan pekerjaan
-● Profil pengguna

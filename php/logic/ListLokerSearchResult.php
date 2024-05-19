@@ -9,7 +9,7 @@
         public function getSearchResult($searchQuery, $category) {
             $loker = array();
             $sql = "SELECT * FROM loker WHERE $category LIKE ?";
-            $stmt = $this->getConnection()->prepare($sql);
+            $stmt = $this->get_connection()->prepare($sql);
             $searchParam = "%$searchQuery%";
             $stmt->bind_param("s", $searchParam);
             $stmt->execute();

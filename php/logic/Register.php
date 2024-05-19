@@ -6,54 +6,47 @@ class Register extends Database {
         parent::__construct();
     }
 
-    public function registerUser($username, $email, $password, $confirmPassword, $role) {
-        $mistake = '';
-        if (strlen($username) < 4) { 
-            echo '<script>alert("USERNAME MINIMAL 4 KARAKTER");</script>';
-            $mistake .= '1';
-        }
+    public function register_user($nama, $email, $password, $konfirmasi_password, $role) {
+        $valid_role = array('pencari_kerja', 'perusahaan');
 
-        if (empty($email)) {
-            echo '<script>alert("EMAIL WAJIB DI ISI");</script>';
-            $mistake .= '2';
-        } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            echo '<script>alert("EMAIL TIDAK VALID");</script>';
-            $mistake .= '3';
-        } elseif ($this->emailExists($email)) {
-            echo '<script>alert("EMAIL SUDAH DIGUNAKAN");</script>';
-            $mistake .= '4';
+        if (!in_array($role, $valid_role)) {
+            return 'Error : Invalid Role';
         }
-
+        if (strlen($nama) < 4) {
+            return 'Error : Nama minimal 4 karakter';
+        } 
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            return 'Error : Penulisan email tidak valid';
+        } 
+        if ($this->email_exists($email)) {
+            return 'Error : Email sudah terdaftar';
+        }
+        if ($password != $konfirmasi_password) {
+            return 'Error : Pastikan password dan konformasi password sama';
+        } 
         if (strlen($password) < 8) {
-            echo '<script>alert("PASSWORD MINIMAL 8 KARAKTER");</script>';
-            $mistake .= '5';
-        }
+            return 'Error : Password minimal 8 karakter';
+        } 
 
-        if ($password != $confirmPassword) {
-            echo '<script>alert("PASSWORD TIDAK SAMA DENGAN CONFIRM PASSWORD");</script>';
-            $mistake .= '6';
-        }
+        $nama = mysqli_real_escape_string($this->get_connection(), $nama);
+        $email = mysqli_real_escape_string($this->get_connection(), $email);
+        $password = mysqli_real_escape_string($this->get_connection(), $password);
+        $passwordHash = password_hash($password, PASSWORD_DEFAULT);
+        $role = mysqli_real_escape_string($this->get_connection(), $role);
 
-        if (empty($mistake)) {
-            $username = mysqli_real_escape_string($this->getConnection(), $username);
-            $email = mysqli_real_escape_string($this->getConnection(), $email);
-            $password = mysqli_real_escape_string($this->getConnection(), $password);
-            $passwordHash = password_hash($password, PASSWORD_DEFAULT);
-            $user_type = mysqli_real_escape_string($this->getConnection(), $role);
-
-            $sql = "INSERT INTO users (username, email, password, user_type) VALUES ('$username', '$email', '$passwordHash', '$user_type')";
-            if (mysqli_query($this->getConnection(), $sql)) {
-                echo '<script>alert("REGISTRASI SUKSES!");</script>';
-            } else {
-                echo '<script>alert("TERJADI ERROR");</script>';
-            }
+        $sql = "INSERT INTO users (nama, email, password, role) VALUES ('$nama', '$email', '$passwordHash', '$role')";
+        if (mysqli_query($this->get_connection(), $sql)) {
+            header("Location: login.php");
+            exit();
+        } else {
+            return 'Error :  Mysqli error';
         }
     }
 
-    private function emailExists($email) {
-        $email = mysqli_real_escape_string($this->getConnection(), $email);
+    private function email_exists($email) {
+        $email = mysqli_real_escape_string($this->get_connection(), $email);
         $sql = "SELECT * FROM users WHERE email = '$email'";
-        $result = mysqli_query($this->getConnection(), $sql);
+        $result = mysqli_query($this->get_connection(), $sql);
         return mysqli_num_rows($result) > 0;
     }
 }
