@@ -41,7 +41,7 @@ class Register extends Database {
             $passwordHash = password_hash($password, PASSWORD_DEFAULT);
             $user_type = mysqli_real_escape_string($this->getConnection(), $role);
 
-            $sql = "INSERT INTO users (username, email, password, user_type) VALUES ('$username', '$email', '$passwordHash', '$user_type')";
+            $sql = "INSERT INTO users (nama, email, password, role) VALUES ('$username', '$email', '$passwordHash', '$user_type')";
             if (mysqli_query($this->getConnection(), $sql)) {
                 echo '<script>alert("REGISTRASI SUKSES!");</script>';
             } else {
