@@ -15,8 +15,9 @@
             $usiamin = mysqli_real_escape_string($this->getConnection(), $usiamin);
             $usiamax = mysqli_real_escape_string($this->getConnection(), $usiamax);
             $prioritasgender = mysqli_real_escape_string($this->getConnection(), $prioritasgender);
-            $sql = "INSERT INTO loker (profesi, posisi, gaji, syaratpendidikan, lokasi, usiamin, usiamax, prioritasgender) 
-                    VALUES ('$profesi', '$posisi', '$gaji', '$syaratpendidikan', '$lokasi', '$usiamin', '$usiamax', '$prioritasgender')";
+            $id_user = $_SESSION['id'];
+            $sql = "INSERT INTO loker (profesi, posisi, gaji, syaratpendidikan, lokasi, usiamin, usiamax, prioritasgender, id_perusahaan) 
+                    VALUES ('$profesi', '$posisi', '$gaji', '$syaratpendidikan', '$lokasi', '$usiamin', '$usiamax', '$prioritasgender', '$id_user')";
             if (mysqli_query($this->getConnection(), $sql)) {
                 echo '<script>alert("LOWONGAN PEKERJAAN BERHASIL DI TAMBAHKAN!");</script>';
             } else {

@@ -19,11 +19,12 @@ class Login extends Database {
                 $row = mysqli_fetch_assoc($result);
                 if (password_verify($password, $row['password'])) {
                     $_SESSION['email'] = $email;
-                    $_SESSION['user_type'] = $row['user_type'];
+                    $_SESSION['role'] = $row['role'];
+                    $_SESSION['id'] = $row['id'];
 
-                    if ($row['user_type'] == 'perusahaan') {
+                    if ($row['role'] == 'perusahaan') {
                         header("Location: index_perusahaan.php");
-                    } elseif ($row['user_type'] == 'user') {
+                    } elseif ($row['role'] == 'pencari_kerja') {
                         header("Location: index.php");
                     }
                     exit();
