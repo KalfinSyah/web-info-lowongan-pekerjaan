@@ -60,7 +60,7 @@
             <select id="prioritasgender" name="prioritasgender" required>
                 <option value="Pria">Pria</option>
                 <option value="Wanita">Wanita</option>
-                <option value="Tidak ada">Tidak ada</option>
+                <option value="Tidak Ada">Tidak ada</option>
             </select><br>
 
             <input type="submit" value="Submit">

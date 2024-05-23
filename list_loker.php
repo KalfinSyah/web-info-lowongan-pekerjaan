@@ -2,22 +2,16 @@
     require_once('./php/logic/SessionChecker.php');
     $sessionChecker = new SessionChecker();
 
-    require_once('./php/logic/Loker.php');
-    $loker = new Loker();
-    $loker = $loker->get_loker();
-
-    require_once('./php/logic/Users.php');
-    $users = new Users();
-
-    require_once('./php/logic/History.php');
-    $history = new History();
+    require_once('./php/logic/MysqliQuery.php');
+    $mysqliQuery = new MysqliQuery();
+    $pencari_kerja_age = $mysqliQuery->get_pencari_kerja_age_by_id_pencari_kerja($_SESSION['id']);
+    $pencari_kerja_gender = $mysqliQuery->get_pencari_kerja_gender_by_id_pencari_kerja($_SESSION['id']);
+    $loker = $mysqliQuery->get_loker();
 
     $reset = false;
     if ($_SERVER["REQUEST_METHOD"] == "GET") {
         if (isset($_GET["searchresult"]) && isset($_GET["category"])) {
-            require_once('./php/logic/ListLokerSearchResult.php');
-            $searchResult = new ListLokerSearchResult();
-            $loker = $searchResult->getSearchResult($_GET["searchresult"], $_GET["category"]);
+            $loker = $mysqliQuery->get_loker_by_keyword_and_category($_GET["searchresult"], $_GET["category"]);
             $reset = true;
         }
     }
@@ -39,8 +33,9 @@
         <div class="allDaftarLokerDiv">
             <h2>Daftar Lowongan Pekerjaan</h2>
 
-            <form action="" method="get">
+            <form action="apply.php" method="get">
                 <select name="category">
+                    <option value="nama">Nama Perusahaan</option>
                     <option value="profesi">Profesi</option>
                     <option value="posisi">Posisi</option>
                     <option value="gaji">Gaji</option>
@@ -61,9 +56,9 @@
         <table class="tabelAllDaftarLoker">
             <thead>
                 <tr>
-                    <th >Profesi</th>
+                    <th>Nama Perusahaan</th>
+                    <th>Profesi</th>
                     <th>Posisi</th>
-                    <th>Perusahaan</th>
                     <th>Gaji</th>
                     <th>Syarat Pendidikan</th>
                     <th>Lokasi</th>
@@ -74,39 +69,46 @@
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($loker as $row) : ?>
+            <?php foreach ($loker as $row) : ?>
+                <tr>
                     <?php 
-                        $nama_perusahaan = $users->get_nama_perusahaan_with_id_perusahaan($row['id_perusahaan']); 
-                        $pencari_pekerja_history = $history->get_history_with_id_pekerja_and_id_loker($_SESSION['id'], $row['id']);
+                        $status_lamaran = $mysqliQuery->get_status_lamaran_by_id_pekerja_and_id_loker($_SESSION['id'], $row['id']);
+                        $status_lamaran = !empty($status_lamaran) ? $status_lamaran[0]['status'] : null;
+                        $gender_priority_met = ($pencari_kerja_gender == $row["prioritasgender"]) || ($row["prioritasgender"] == 'Tidak Ada');
+                        $age_priority_met = ($pencari_kerja_age >= $row['usiamin']) && ($pencari_kerja_age <= $row['usiamax']);
                     ?>
-                    <tr>
-                        <td><?php echo $row['profesi']; ?></td>
-                        <td><?php echo $row['posisi']; ?></td>
-                        <td><?php echo $nama_perusahaan[0]['nama']; ?></td>
-                        <td><?php echo "Rp " . $row['gaji']; ?></td>
-                        <td><?php echo $row['syaratpendidikan']; ?></td>
-                        <td><?php echo $row['lokasi']; ?></td>
-                        <td><?php echo $row['usiamin']; ?></td>
-                        <td><?php echo $row['usiamax']; ?></td>
-                        <td><?php echo $row['prioritasgender']; ?></td>
-                        <?php if (empty($pencari_pekerja_history)) : ?>
+                    <td><?php echo $row['nama']; ?></td>
+                    <td><?php echo $row['profesi']; ?></td>
+                    <td><?php echo $row['posisi']; ?></td>
+                    <td>Rp. <?php echo $row['gaji']; ?></td>
+                    <td><?php echo $row['syaratpendidikan']; ?></td>
+                    <td><?php echo $row['lokasi']; ?></td>
+                    <td><?php echo $row['usiamin']; ?></td>
+                    <td><?php echo $row['usiamax']; ?></td>
+                    <td><?php echo $row['prioritasgender']; ?></td>
+                    <?php if (is_null($status_lamaran)) : ?>
+                        <?php if ($age_priority_met && $gender_priority_met) : ?>
                             <td>
-                            
-                                <form action="upload_cv.php" method="post">
+                                <form action="apply.php" method="post">
                                     <input type="hidden" name="id_loker" value="<?php echo $row['id']; ?>">
-                                    <input type="hidden" name="id_perusahaan" value="<?php echo $row['id_perusahaan']; ?>"> 
-                                    <button type="submit">Apply</button>
-                                </form>
+                                    <input type="hidden" name="id_perusahaan" value="<?php echo $row['id_perusahaan']; ?>">
+                                    <button type="submit" name="apply_btn">Apply</button>
+                                </form>  
                             </td>
-                        <?php else: ?>
-                            <td class="<?php echo $pencari_pekerja_history[0]['status']; ?>">
-                                <?php echo $pencari_pekerja_history[0]['status']; ?>
-                            </td>
+                        <?php elseif (!$age_priority_met) : ?>
+                            <td>Syarat umur tidak memenuhi</td>
+                        <?php elseif (!$gender_priority_met) : ?>
+                            <td>Syarat gender tidak memenuhi</td>
+                        <?php else : ?>
+                            <td>Syarat umur dan gender tidak memenuhi</td>
                         <?php endif; ?>
-                    </tr>
-                <?php endforeach; ?>
+                    <?php else : ?>
+                        <td class="<?php echo $status_lamaran; ?>"><?php echo $status_lamaran; ?></td>
+                    <?php endif; ?>
+                </tr>
+            <?php endforeach; ?>
             </tbody>
-        </table>
+        </table> 
     </div>
 </body>
 </html>

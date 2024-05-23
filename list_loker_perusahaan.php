@@ -2,9 +2,9 @@
     require_once('./php/logic/SessionChecker.php');
     $sessionChecker = new SessionChecker();
 
-    require_once('./php/logic/Loker.php');
-    $loker = new Loker();
-    $loker = $loker->get_specific_perusahaan_loker($_SESSION["id"]);
+    require_once('./php/logic/MysqliQuery.php');
+    $mysqliQuery = new MysqliQuery();
+    $loker = $mysqliQuery->get_loker_by_id_perusahaan($_SESSION["id"]);
 ?>
 
 
@@ -21,13 +21,13 @@
     
     <div class="container">
         <div class="allDaftarLokerDiv">
-            <h2>Daftar Lowongan Pekerjaan Perusahaan Saat ini</h2>
+            <h2>Daftar Lowongan Pekerjaan Perusahaan Anda Saat ini</h2>
             <table class="tabelAllDaftarLoker">
                 <thead>
                     <tr>
                         <th >Profesi</th>
                         <th>Posisi</th>
-                        <th>Gaji</th>
+                        <th>Gaji/Perbulan</th>
                         <th>Syarat Pendidikan</th>
                         <th>Lokasi</th>
                         <th>Usia Minimal</th>

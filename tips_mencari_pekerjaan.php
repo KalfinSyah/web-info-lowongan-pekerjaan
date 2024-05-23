@@ -4,7 +4,7 @@
 
     require_once('./php/logic/TipsMencariPekerjaan.php');
     $tipsMencariPekerjaan = new TipsMencariPekerjaan();
-    $tipsMencariPekerjaan = $tipsMencariPekerjaan->getTips();
+    $tipsMencariPekerjaan = $tipsMencariPekerjaan->get_tips();
 ?>
 
 <!DOCTYPE html>

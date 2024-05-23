@@ -2,18 +2,12 @@
     require_once('./php/logic/SessionChecker.php');
     $sessionChecker = new SessionChecker();
 
-    require_once('./php/logic/History.php');
-    $history = new History();
-    $history = $history->get_specific_id_pencari_kerja_history($_SESSION['id']);
-
-    require_once('./php/logic/Loker.php');
-    $loker = new Loker();
-
-    require_once('./php/logic/Users.php');
-    $users = new Users();
+    require_once('./php/logic/MysqliQuery.php');
+    $mysqliQuery = new MysqliQuery();
+    $loker = $mysqliQuery->get_loker();
 ?>
 
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -30,28 +24,38 @@
             <table class="tabelHistory">
                 <thead>
                     <tr>
-                        <th>Waktu Melamar</th>
+                        <th>Nama Perusahaan</th>
                         <th>Profesi</th>
                         <th>Posisi</th>
-                        <th>Perusahaan</th>
+                        <th>Gaji</th>
+                        <th>Syarat Pendidikan</th>
+                        <th>Lokasi</th>
+                        <th>Usia Minimal</th>
+                        <th>Usia Maksimal</th>
+                        <th>Diprioritaskan Untuk</th>
                         <th>Status</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ($history as $row) : ?>
+                    <?php foreach ($loker as $row) : ?>
                         <?php 
-                        $loker_details = $loker->get_specific_loker($row['id_loker']); 
-                        $status_class = strtolower($row['status']);
-                        $nama_perusahaan = $users->get_nama_perusahaan_with_id_perusahaan($row['id_perusahaan']); 
+                            $loker_yang_pernah_di_apply_pencari_kerja = $mysqliQuery->get_status_lamaran_by_id_pekerja_and_id_loker($_SESSION['id'], $row['id']);
                         ?>
                         <tr>
-                            <td><?php echo htmlspecialchars($row['waktu_melamar']); ?></td>
-                            <td><?php echo htmlspecialchars($loker_details[0]['profesi']); ?></td>
-                            <td><?php echo htmlspecialchars($loker_details[0]['posisi']); ?></td>
-                            <td><?php echo htmlspecialchars($nama_perusahaan[0]['nama']); ?></td>
-                            <td class="<?php echo htmlspecialchars($status_class); ?>">
-                                <?php echo htmlspecialchars($row['status']); ?>
-                            </td>
+                            <?php if (!empty($loker_yang_pernah_di_apply_pencari_kerja)) : ?>
+                                <td><?php echo $row['nama']; ?></td>
+                                <td><?php echo $row['profesi']; ?></td>
+                                <td><?php echo $row['posisi']; ?></td>
+                                <td><?php echo "Rp " . $row['gaji']; ?></td>
+                                <td><?php echo $row['syaratpendidikan']; ?></td>
+                                <td><?php echo $row['lokasi']; ?></td>
+                                <td><?php echo $row['usiamin']; ?></td>
+                                <td><?php echo $row['usiamax']; ?></td>
+                                <td><?php echo $row['prioritasgender']; ?></td>
+                                <td class="<?php echo $loker_yang_pernah_di_apply_pencari_kerja[0]['status']; ?>">
+                                    <?php echo $loker_yang_pernah_di_apply_pencari_kerja[0]['status']; ?>
+                                </td>                            
+                            <?php endif; ?>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>

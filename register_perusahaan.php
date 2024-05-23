@@ -2,7 +2,13 @@
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     require_once('./php/logic/Register.php');
     $register = new Register();
-    $result = $register->register_user($_POST['nama'], $_POST['email'], $_POST['password'], $_POST['konfirmasi_password'], $_POST['role']);
+    $result = $register->register_perusahaan(
+        $_POST['nama'], 
+        $_FILES['foto_profil_perusahaan'], 
+        $_POST['email'], 
+        $_POST['password'], 
+        $_POST['konfirmasi_password']
+    );
     echo $result;
 }
 ?>
@@ -16,21 +22,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <title>Register</title>
 </head>
 <body>
-    <form action="register.php" method="post">
+    <form action="register_perusahaan.php" method="post" enctype="multipart/form-data">
         <section>
             <div>
-                <label for="">Role</label>
-                <select name="role" required>
-                    <option value="pencari_kerja">Pencari Kerja</option>
-                    <option value="perusahaan">Perusahaan</option>
-                </select>
-            </div>
-            <div>
-                <label for="">Nama</label>
+                <label for="">Nama Perusahaan</label>
                 <input type="text" name="nama" required>
             </div>
             <div>
-                <label for="">Email</label>
+                <label for="">Foto Profil (png, max 5mb)</label>
+                <input type="file" name="foto_profil_perusahaan" accept=".png" required>
+            </div>
+            <div>
+                <label for="">Email Perusahaan</label>
                 <input type="email" name="email" required>
             </div>
             <div>
@@ -43,7 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
         </section>
 
-        <p>Sudah mempunyai akun? <a href="login.php">klik disini</a></p>
+        <p>Sudah mempunyai akun perusahaan? <a href="login.php">klik disini</a></p>
 
         <button type="submit">REGISTER</button>
     </form>

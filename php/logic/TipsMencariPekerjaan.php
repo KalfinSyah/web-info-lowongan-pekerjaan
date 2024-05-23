@@ -6,10 +6,10 @@
             parent::__construct();
         }
 
-        public function getTips() {
+        public function get_tips() {
             $tips = array();
 
-            $sql = "SELECT tips FROM tipsmencaripekerjaan ORDER BY RAND() LIMIT 3";
+            $sql = "SELECT tips FROM tips_mencari_pekerjaan ORDER BY RAND() LIMIT 3";
             $result = mysqli_query($this->get_connection(), $sql);
 
             if ($result) {

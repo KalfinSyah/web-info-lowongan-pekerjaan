@@ -2,26 +2,19 @@
     require_once('./php/logic/SessionChecker.php');
     $sessionChecker = new SessionChecker();
 
-    require_once('./php/logic/History.php');
-    $history = new History();
-    $history = $history->get_specific_history_with_id_perusahaan($_SESSION['id']);
-
-    require_once('./php/logic/Loker.php');
-    $loker = new Loker();
-
-    require_once('./php/logic/Users.php');
-    $users = new Users();
+    require_once('./php/logic/MysqliQuery.php');
+    $mysqliQuery = new MysqliQuery();
+    $pelamar = $mysqliQuery->get_pelamar_by_id_perusahaan($_SESSION['id']);
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        if (isset($_POST['id_pencari_kerja']) && isset($_POST['perusahaan_action'])) {
+        if (isset($_POST['perusahaan_action'])) {
             require_once('./php/logic/Lamaran.php');
             $lamaran = new Lamaran();
-            $lamaran->set_status($_POST['id_pencari_kerja'], $_POST['id_loker'], $_POST['perusahaan_action']);
-        }
-        
-        if (isset($_POST["lihat_cv"])) {
-            require_once('./php/logic/ReadPDF.php');
-            $readPDF = new ReadPDF($_POST['lihat_cv']);
+            if ($_POST['perusahaan_action'] === 'diterima') {
+                $lamaran->set_status($_POST['id_pelamar'], $_POST['id_loker'], 'diterima');
+            } elseif ($_POST['perusahaan_action'] === 'ditolak') {
+                $lamaran->set_status($_POST['id_pelamar'], $_POST['id_loker'], 'ditolak');
+            }
         }
     }
 ?>
@@ -48,40 +41,47 @@
                         <th>Nama Pelamar</th>
                         <th>Profesi</th>
                         <th>Posisi</th>
-                        <th>CV</th>
+                        <th>Data Pelamar</th>
                         <th>Status</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ($history as $row) : ?>
-                        <?php 
-                        $nama = $users->get_user_with_id_pencari_kerja($row['id_pencari_kerja']); 
-                        $info_loker = $loker->get_specific_id_loker_with_id_perusahaan($row['id_loker'], $row['id_perusahaan']);
-                        $status_class = strtolower($row['status']);
-                        ?>
+                    <?php foreach ($pelamar as $row) : ?>
                         <tr>
-                            <th><?php echo htmlspecialchars($row['waktu_melamar']); ?></th>
-                            <td><?php echo htmlspecialchars($row['id_pencari_kerja']); ?></td>
-                            <td><?php echo htmlspecialchars($nama[0]['nama']); ?></td>
-                            <td><?php echo htmlspecialchars($info_loker[0]['profesi']); ?></td>
-                            <td><?php echo htmlspecialchars($info_loker[0]['posisi']); ?></td>
+                            <td><?php echo $row["waktu_melamar"]; ?></td>
+                            <td><?php echo $row["id_pencari_kerja"]; ?></td>
+                            <td><?php echo $row["nama"]; ?></td>
+                            <td><?php echo $row["profesi"]; ?></td>
+                            <td><?php echo $row["posisi"]; ?></td>
                             <td>
-                                <form action="" method="post">
-                                    <button type="submit" name="lihat_cv" value="<?php echo htmlspecialchars($row['nama_file']); ?>">Lihat CV</button>
+                                <form action="lihat_data_pelamar.php" method="post">
+                                    <input type="hidden" name="id_pelamar" value="<?php echo $row["id_pencari_kerja"]; ?>">
+                                    <input type="hidden" name="nama_pelamar" value="<?php echo $row["nama"]; ?>">
+                                    <input type="hidden" name="profesi" value="<?php echo $row["profesi"]; ?>">
+                                    <input type="hidden" name="posisi" value="<?php echo $row["posisi"]; ?>">
+                                    <input type="hidden" name="file_cv" value="<?php echo $row["file_cv"]; ?>">
+                                    <input type="hidden" name="file_scan_ktp" value="<?php echo $row["file_scan_ktp"]; ?>">
+                                    <input type="hidden" name="file_ijazah" value="<?php echo $row["file_ijazah"]; ?>">
+                                    <input type="hidden" name="file_pass_foto" value="<?php echo $row["file_pass_foto"]; ?>">
+                                    <input type="hidden" name="file_sertifikat" value="<?php echo $row["file_sertifikat"]; ?>">
+                                    <input type="hidden" name="file_portfolio" value="<?php echo $row["file_portfolio"]; ?>">
+                                    <input type="hidden" name="alasan" value="<?php echo $row["alasan"]; ?>">
+                                    <input type="hidden" name="status" value="<?php echo $row["status"]; ?>">
+                                    <button type="submit" name="lihat_data">Lihat Data</button>
                                 </form>
                             </td>
-                            <td class="<?php echo htmlspecialchars($status_class); ?>">
-                                <?php if ($row['status'] == 'pending') : ?>
+                            <?php if ($row["status"] == "pending") : ?>
+                                <td>
                                     <form action="" method="post">
-                                        <input type="hidden" name="id_pencari_kerja" value="<?php echo htmlspecialchars($row['id_pencari_kerja']); ?>">
-                                        <input type="hidden" name="id_loker" value="<?php echo htmlspecialchars($row['id_loker']); ?>">
-                                        <button type="submit" name="perusahaan_action" value="diterima">terima</button>
-                                        <button type="submit" name="perusahaan_action" value="ditolak">tolak</button>
+                                        <input type="hidden" name="id_pelamar" value="<?php echo $row["id_pencari_kerja"]; ?>">
+                                        <input type="hidden" name="id_loker" value="<?php echo $row["id_loker"]; ?>">
+                                        <button type="submit" name="perusahaan_action" value="diterima">Terima</button>
+                                        <button type="submit" name="perusahaan_action" value="ditolak">Tolak</button>
                                     </form>
-                                <?php else: ?>
-                                    <?php echo htmlspecialchars($row['status']); ?>
-                                <?php endif; ?>
-                            </td>
+                                </td>
+                            <?php else : ?>
+                                <td><?php echo $row["status"]; ?></td>
+                            <?php endif; ?>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>
@@ -90,3 +90,5 @@
     </div>
 </body>
 </html>
+
+

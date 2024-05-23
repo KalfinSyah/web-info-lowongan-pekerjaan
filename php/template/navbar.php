@@ -1,6 +1,11 @@
-<?php if ($_SESSION['role'] == 'pencari_kerja') : ?>
+<?php 
+    require_once('./php/logic/SessionValueGetter.php');
+    $sessionValueGetter = new SessionValueGetter();
+?>
+
+<?php if ($_SESSION['role'] == 'akun_pencari_kerja') : ?>
     <div class='navbar'>
-        <h1>Selamat Datang <?php echo $sessionChecker->get_nama(); ?></h1>
+        <h1>Selamat Datang <?php echo $sessionValueGetter->get_nama(); ?></h1>
         <div class="listPages">
             <a href='index.php'>Home</a>
             <a href='list_loker.php'>List Loker</a>
@@ -9,9 +14,9 @@
             <a href="./php/logic/Logout.php">Logout</a>
         </div>
     </div>
-<?php elseif ($_SESSION['role'] == 'perusahaan') : ?>
+<?php elseif ($_SESSION['role'] == 'akun_perusahaan') : ?>
     <div class='navbar'>
-        <h1>Selamat Datang <?php echo $sessionChecker->get_nama(); ?></h1>
+        <h1>Selamat Datang <?php echo $sessionValueGetter->get_nama(); ?></h1>
         <div class="listPages">
             <a href='index.php'>Home</a>
             <a href='list_loker_perusahaan.php'>List Loker Perusahaan</a>
