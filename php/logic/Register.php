@@ -104,7 +104,7 @@ class Register extends Database {
         }
     }
 
-    private function email_exists($email, $table) {
+    protected function email_exists($email, $table) {
         $email = mysqli_real_escape_string($this->get_connection(), $email);
         if ($table == 'akun_perusahaan') {
             $sql = "SELECT * FROM akun_perusahaan WHERE email = '$email'";
@@ -116,19 +116,19 @@ class Register extends Database {
         return mysqli_num_rows($result) > 0;
     }
 
-    private function nama_perusahaan_exists($nama) {
+    protected function nama_perusahaan_exists($nama) {
         $nama = mysqli_real_escape_string($this->get_connection(), $nama);
         $sql = "SELECT * FROM akun_perusahaan WHERE nama = '$nama'";
         $result = mysqli_query($this->get_connection(), $sql);
         return mysqli_num_rows($result) > 0;
     }
 
-    private function is_valid_date_format($date, $format = 'Y-m-d') {
+    protected function is_valid_date_format($date, $format = 'Y-m-d') {
         $d = DateTime::createFromFormat($format, $date);
         return $d && $d->format($format) === $date;
     }
 
-    private function upload_foto_profile($file, $upload_dir, $allowed_ext, $max_file_size) {
+    protected function upload_foto_profile($file, $upload_dir, $allowed_ext, $max_file_size) {
         $filename = $file['name'];
         $file_tmp = $file['tmp_name'];
         $file_size = $file['size'];

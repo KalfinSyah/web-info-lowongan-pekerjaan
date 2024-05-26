@@ -19,7 +19,7 @@
                 <th>Lokasi</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody> 
             <?php foreach($loker as $row) : ?>
                 <tr>
                     <td><?php echo $row['nama']; ?></td>

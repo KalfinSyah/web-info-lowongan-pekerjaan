@@ -1,11 +1,6 @@
-<?php 
-    require_once('./php/logic/SessionValueGetter.php');
-    $sessionValueGetter = new SessionValueGetter();
-?>
-
 <?php if ($_SESSION['role'] == 'akun_pencari_kerja') : ?>
     <div class='navbar'>
-        <h1>Selamat Datang <?php echo $sessionValueGetter->get_nama(); ?></h1>
+        <h1> <img src="uploads/foto_profil/akun_pencari_kerja/<?php echo $_SESSION['foto_profil']; ?>" alt=""> <a href="profile.php"><?php echo $_SESSION['nama']; ?></a> </h1>
         <div class="listPages">
             <a href='index.php'>Home</a>
             <a href='list_loker.php'>List Loker</a>
@@ -16,7 +11,7 @@
     </div>
 <?php elseif ($_SESSION['role'] == 'akun_perusahaan') : ?>
     <div class='navbar'>
-        <h1>Selamat Datang <?php echo $sessionValueGetter->get_nama(); ?></h1>
+        <h1><img src="uploads/foto_profil/akun_perusahaan/<?php echo $_SESSION['foto_profil']; ?>" alt=""> <a href="profile.php"><?php echo $_SESSION['nama']; ?></h1>
         <div class="listPages">
             <a href='index.php'>Home</a>
             <a href='list_loker_perusahaan.php'>List Loker Perusahaan</a>

@@ -12,7 +12,7 @@ class Login extends Database {
         $password = mysqli_real_escape_string($this->get_connection(), $password);
 
         if ($role == 'akun_pencari_kerja') {
-            $sql = "SELECT id, nama, foto_profil, email, password FROM akun_pencari_kerja WHERE email = '$email'";
+            $sql = "SELECT id, nama, foto_profil, email, gender, tanggal_lahir, password FROM akun_pencari_kerja WHERE email = '$email'";
         } elseif ($role == 'akun_perusahaan') {
             $sql = "SELECT id, nama, foto_profil, email, password FROM akun_perusahaan WHERE email = '$email'";
         } else {
@@ -29,6 +29,16 @@ class Login extends Database {
                     $_SESSION['nama'] = $row['nama'];
                     $_SESSION['foto_profil'] = $row['foto_profil'];
                     $_SESSION['email'] = $row['email'];
+
+                    if ($_SESSION['role'] == "akun_pencari_kerja") {
+                        $_SESSION['gender'] = $row['gender'];
+                        $_SESSION['tanggal_lahir'] = $row['tanggal_lahir'];
+                        $birthDate = new DateTime($_SESSION['tanggal_lahir']);
+                        $currentDate = new DateTime();
+                        $age = $currentDate->diff($birthDate)->y;
+                        $_SESSION['usia'] = $age;
+                    }
+
                     header("Location: index.php");
                     exit();
                 } else {

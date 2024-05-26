@@ -11,7 +11,6 @@
             exit();
         }
     }
-
-
+    
     new Logout();
 ?>
