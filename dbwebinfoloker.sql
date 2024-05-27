@@ -3,62 +3,67 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 19, 2024 at 05:28 PM
+-- Generation Time: May 27, 2024 at 10:58 PM
 -- Server version: 10.4.32-MariaDB
--- PHP Version: 8.2.12
+-- PHP Version: 8.0.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
 
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
---
--- Database: `dbwebinfoloker`
---
 DROP Database IF EXISTS dbwebinfoloker;
 CREATE Database IF NOT EXISTS dbwebinfoloker;
 USE dbwebinfoloker;
 
--- --------------------------------------------------------
+CREATE TABLE `akun_pencari_kerja` (
+  `id` int(11) NOT NULL,
+  `nama` varchar(100) NOT NULL,
+  `tanggal_lahir` date DEFAULT NULL,
+  `gender` enum('Pria','Wanita') DEFAULT NULL,
+  `foto_profil` varchar(255) DEFAULT NULL,
+  `email` varchar(100) NOT NULL,
+  `password` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Table structure for table `history`
---
+INSERT INTO `akun_pencari_kerja` (`id`, `nama`, `tanggal_lahir`, `gender`, `foto_profil`, `email`, `password`) VALUES
+(1, 'Joni', '2000-01-01', 'Pria', 'profile_664e3a58ec83e3.59570051.png', 'joni@gmail.com', '$2y$10$06TSdaKM3A/AePD7uaWI.eZEeyov8MKXcfMKIV6UwLT8zOdD3iLzG'),
+(2, 'Kalfin', '1999-01-01', 'Pria', 'profile_665367775c6176.26486513.png', 'kalfin@gmail.com', '$2y$10$KECLVJOLZJqOWOgNQnvEP.Bl3l1xVgpBYdw2jcvSPUy7uJ2AjEadK');
+
+CREATE TABLE `akun_perusahaan` (
+  `id` int(11) NOT NULL,
+  `nama` varchar(100) NOT NULL,
+  `foto_profil` varchar(255) DEFAULT NULL,
+  `email` varchar(100) NOT NULL,
+  `password` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+INSERT INTO `akun_perusahaan` (`id`, `nama`, `foto_profil`, `email`, `password`) VALUES
+(1, 'PT JAYA MAYA', 'profile_66536f334d18c8.00176713.png', 'jayamaya@gmail.com', '$2y$10$ClOmg8QzgDQWJZPEHHea8O0EhngJ5Nt4.9xOAfHitn0rYHHTL3.0y'),
+(2, 'PT SUKSES ABADI', 'profile_664e52621953b9.57012813.png', 'suksesabadi@gmail.com', '$2y$10$lVnQN6LHd0myZIBXmpwZPO8UiYHnDGMLKak6SpF17E.t6GRnEMvau');
 
 CREATE TABLE `history` (
   `id` int(11) NOT NULL,
-  `id_pencari_kerja` int(11) DEFAULT NULL,
-  `id_loker` int(11) DEFAULT NULL,
   `waktu_melamar` timestamp NOT NULL DEFAULT current_timestamp(),
-  `nama_file` varchar(255) DEFAULT NULL,
-  `status` enum('diterima','ditolak','pending') DEFAULT 'pending',
-  `id_perusahaan` int(11) NOT NULL
+  `id_pencari_kerja` int(11) DEFAULT NULL,
+  `id_perusahaan` int(11) NOT NULL,
+  `id_loker` int(11) DEFAULT NULL,
+  `file_cv` varchar(255) DEFAULT NULL,
+  `file_scan_ktp` varchar(255) DEFAULT NULL,
+  `file_ijazah` varchar(255) DEFAULT NULL,
+  `file_pass_foto` varchar(255) DEFAULT NULL,
+  `file_sertifikat` varchar(255) DEFAULT NULL,
+  `file_portfolio` varchar(255) DEFAULT NULL,
+  `alasan` varchar(255) DEFAULT NULL,
+  `status` enum('diterima','ditolak','pending') DEFAULT 'pending'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `history`
---
-
-INSERT INTO `history` (`id`, `id_pencari_kerja`, `id_loker`, `waktu_melamar`, `nama_file`, `status`, `id_perusahaan`) VALUES
-(9, 9, 18, '2024-05-19 13:55:54', '664a04ea38938.pdf', 'ditolak', 8),
-(10, 9, 19, '2024-05-19 13:59:23', '664a05bb1d1eb.pdf', 'diterima', 8),
-(11, 10, 22, '2024-05-19 13:59:59', '664a05df13831.pdf', 'pending', 7),
-(12, 11, 20, '2024-05-19 14:12:31', '664a08cfcfa9b.pdf', 'pending', 8),
-(13, 9, 20, '2024-05-19 15:17:49', '664a181d1fdda.pdf', 'ditolak', 8);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `loker`
---
+INSERT INTO `history` (`id`, `waktu_melamar`, `id_pencari_kerja`, `id_perusahaan`, `id_loker`, `file_cv`, `file_scan_ktp`, `file_ijazah`, `file_pass_foto`, `file_sertifikat`, `file_portfolio`, `alasan`, `status`) VALUES
+(3, '2024-05-23 18:09:04', 1, 1, 1, 'uploads/apply/cv/file_664f864075ca05.83378638.pdf', 'uploads/apply/scan_ktp/file_664f864075e690.98386565.pdf', 'uploads/apply/ijazah/file_664f8640760477.03108759.pdf', 'uploads/apply/pass_foto/file_664f8640761844.76514880.jpg', NULL, NULL, 'Karena saya suka', 'diterima'),
+(6, '2024-05-23 23:28:10', 2, 1, 2, 'uploads/apply/cv/file_664fd10acde214.75888146.pdf', 'uploads/apply/scan_ktp/file_664fd10acdfb49.64722493.pdf', 'uploads/apply/ijazah/file_664fd10ace0772.65178682.pdf', 'uploads/apply/pass_foto/file_664fd10ace1366.28969177.jpg', 'uploads/apply/sertifikat/file_664fd10ace1fc1.44491625.pdf', 'uploads/apply/portfolio/file_664fd10ace2a10.04399567.pdf', 'kayaknya saya bisa', 'diterima');
 
 CREATE TABLE `loker` (
   `id` int(11) NOT NULL,
+  `id_perusahaan` int(11) NOT NULL,
   `profesi` varchar(100) DEFAULT NULL,
   `posisi` varchar(100) DEFAULT NULL,
   `gaji` decimal(10,2) DEFAULT NULL,
@@ -66,38 +71,24 @@ CREATE TABLE `loker` (
   `lokasi` varchar(100) DEFAULT NULL,
   `usiamin` int(11) DEFAULT NULL,
   `usiamax` int(11) DEFAULT NULL,
-  `prioritasgender` varchar(10) DEFAULT NULL,
-  `id_perusahaan` int(11) NOT NULL
+  `prioritasgender` varchar(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `loker`
---
+INSERT INTO `loker` (`id`, `id_perusahaan`, `profesi`, `posisi`, `gaji`, `syaratpendidikan`, `lokasi`, `usiamin`, `usiamax`, `prioritasgender`) VALUES
+(1, 1, 'Web Developer', 'Frontend', 8000000.00, 'S1 Informatika', 'Surabya', 22, 35, 'Tidak Ada'),
+(2, 1, 'Web Developer', 'Backend', 10000000.00, 'S1 Informatika', 'Surabya', 22, 35, 'Tidak Ada'),
+(3, 1, 'Web Developer', 'Fullstack', 12000000.00, 'S1 Informatika', 'Surabya', 22, 35, 'Tidak Ada'),
+(4, 2, 'Pekerja Kantoran', 'Akuntansi', 10000000.00, 'S1 Akutansi', 'Surabya', 25, 40, 'Tidak Ada'),
+(5, 2, 'Pekerja Kantoran', 'Asisten CEO', 15000000.00, 'S1 Ekonomi Bisnis', 'Surabya', 22, 30, 'Tidak Ada'),
+(6, 2, 'Manger', 'Manager Gudang', 15000000.00, 'S1 Managemen', 'Surabya', 24, 28, 'Tidak Ada'),
+(7, 1, 'Desktop App Developer', 'Security', 30000000.00, 'S1 Informatika', 'Surabya', 25, 35, 'Tidak Ada');
 
-INSERT INTO `loker` (`id`, `profesi`, `posisi`, `gaji`, `syaratpendidikan`, `lokasi`, `usiamin`, `usiamax`, `prioritasgender`, `id_perusahaan`) VALUES
-(18, 'Website Developer', 'Frontend', 8000000.00, 'S1 Informatika', 'Surabya', 22, 35, 'Tidak ada', 8),
-(19, 'Web Developer', 'Backend', 10000000.00, 'S1 Informatika', 'Surabya', 22, 35, 'Tidak ada', 8),
-(20, 'Website Developer', 'Fullstack', 12000000.00, 'S1 Informatika', 'Surabya', 22, 35, 'Tidak ada', 8),
-(21, 'Pekerja Kantoran', 'Akuntansi', 10000000.00, 'S1 Akutansi', 'Surabya', 25, 40, 'Wanita', 7),
-(22, 'Pekerja Kantoran', 'Asisten CEO', 15000000.00, 'S1 Ekonomi Bisnis', 'Surabya', 22, 308, 'Tidak ada', 7),
-(23, 'Manger', 'Manager Gudang', 15000000.00, 'S1 Managemen', 'Surabya', 24, 28, 'Tidak ada', 7);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tipsmencaripekerjaan`
---
-
-CREATE TABLE `tipsmencaripekerjaan` (
+CREATE TABLE `tips_mencari_pekerjaan` (
   `id` int(11) NOT NULL,
   `tips` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `tipsmencaripekerjaan`
---
-
-INSERT INTO `tipsmencaripekerjaan` (`id`, `tips`) VALUES
+INSERT INTO `tips_mencari_pekerjaan` (`id`, `tips`) VALUES
 (1, 'Jadilah proaktif dalam mencari pekerjaan.'),
 (2, 'Perbarui dan perbaiki CV dan surat lamaran Anda secara teratur.'),
 (3, 'Jangan ragu untuk memanfaatkan jaringan Anda.'),
@@ -246,111 +237,40 @@ INSERT INTO `tipsmencaripekerjaan` (`id`, `tips`) VALUES
 (146, 'Manfaatkan kesempatan untuk mengikuti webinar atau konferensi online.'),
 (147, 'Jadilah terbuka terhadap peluang karir di luar bidang utama Anda.');
 
--- --------------------------------------------------------
+ALTER TABLE `akun_pencari_kerja`
+  ADD PRIMARY KEY (`id`);
 
---
--- Table structure for table `users`
---
+ALTER TABLE `akun_perusahaan`
+  ADD PRIMARY KEY (`id`);
 
-CREATE TABLE `users` (
-  `id` int(11) NOT NULL,
-  `nama` varchar(50) NOT NULL,
-  `email` varchar(100) DEFAULT NULL,
-  `password` varchar(255) NOT NULL,
-  `role` enum('pencari_kerja','perusahaan') NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `users`
---
-
-INSERT INTO `users` (`id`, `nama`, `email`, `password`, `role`) VALUES
-(7, 'PT SUKSES ABADI', 'suksesabadi@gmail.com', '$2y$10$x0P.KrC4RWJ2kliLKNvnXORgVKCDxUjeBnmG5VEjQlIA4cNBH15Zm', 'perusahaan'),
-(8, 'PT JAYA MAYA', 'jayamaya@gmail.com', '$2y$10$iXcboDzlSOKx0frXVbglEujUMaoTG91ERjfx9nOHpMGXM11hpC60C', 'perusahaan'),
-(9, 'Kalfin Syah', 'kalfinsyah@gmail.com', '$2y$10$0JiV.K5rau1F737g5EicwOMh.ta.RMG82S2WzptKKR/twAOD4eI..', 'pencari_kerja'),
-(10, 'Irsyad Fadhil', 'irsyadfadhil@gmail.com', '$2y$10$J5Wy6Rznk8Ba5KE/2v6lkeKLuAu8LXe9iATxsLo37nIg3skNQXlia', 'pencari_kerja'),
-(11, 'Joni', 'joni@gmail.com', '$2y$10$2kQ2Kb9rirZLDAZCWrUb7eekKYwKhvvIMsgC2nIwh156nMiM85NgC', 'pencari_kerja');
-
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `history`
---
 ALTER TABLE `history`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `id_pencari_kerja` (`id_pencari_kerja`),
-  ADD KEY `id_loker` (`id_loker`),
-  ADD KEY `fk_history_perusahaan` (`id_perusahaan`);
+  ADD KEY `fk_history_pencari_kerja` (`id_pencari_kerja`),
+  ADD KEY `fk_history_perusahaan` (`id_perusahaan`),
+  ADD KEY `fk_history_loker` (`id_loker`);
 
---
--- Indexes for table `loker`
---
 ALTER TABLE `loker`
   ADD PRIMARY KEY (`id`),
   ADD KEY `fk_loker_perusahaan` (`id_perusahaan`);
 
---
--- Indexes for table `tipsmencaripekerjaan`
---
-ALTER TABLE `tipsmencaripekerjaan`
-  ADD PRIMARY KEY (`id`);
+ALTER TABLE `akun_pencari_kerja`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
---
--- Indexes for table `users`
---
-ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `email_UNIQUE` (`email`);
+ALTER TABLE `akun_perusahaan`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `history`
---
 ALTER TABLE `history`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
---
--- AUTO_INCREMENT for table `loker`
---
 ALTER TABLE `loker`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
---
--- AUTO_INCREMENT for table `tipsmencaripekerjaan`
---
-ALTER TABLE `tipsmencaripekerjaan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=148;
-
---
--- AUTO_INCREMENT for table `users`
---
-ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
-
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `history`
---
 ALTER TABLE `history`
-  ADD CONSTRAINT `fk_history_perusahaan` FOREIGN KEY (`id_perusahaan`) REFERENCES `users` (`id`),
-  ADD CONSTRAINT `history_ibfk_1` FOREIGN KEY (`id_pencari_kerja`) REFERENCES `users` (`id`),
-  ADD CONSTRAINT `history_ibfk_2` FOREIGN KEY (`id_loker`) REFERENCES `loker` (`id`);
+  ADD CONSTRAINT `fk_history_loker` FOREIGN KEY (`id_loker`) REFERENCES `loker` (`id`),
+  ADD CONSTRAINT `fk_history_pencari_kerja` FOREIGN KEY (`id_pencari_kerja`) REFERENCES `akun_pencari_kerja` (`id`),
+  ADD CONSTRAINT `fk_history_perusahaan` FOREIGN KEY (`id_perusahaan`) REFERENCES `akun_perusahaan` (`id`);
 
---
--- Constraints for table `loker`
---
 ALTER TABLE `loker`
-  ADD CONSTRAINT `fk_loker_perusahaan` FOREIGN KEY (`id_perusahaan`) REFERENCES `users` (`id`);
+  ADD CONSTRAINT `fk_loker_perusahaan` FOREIGN KEY (`id_perusahaan`) REFERENCES `akun_perusahaan` (`id`);
 COMMIT;
 
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

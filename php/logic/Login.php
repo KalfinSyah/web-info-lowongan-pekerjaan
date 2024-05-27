@@ -6,36 +6,50 @@ class Login extends Database {
     public function __construct() {
         parent::__construct();
     }
+ 
+    public function login_user($role, $email, $password) {
+        $email = mysqli_real_escape_string($this->get_connection(), $email);
+        $password = mysqli_real_escape_string($this->get_connection(), $password);
 
-    public function loginUser($email, $password) {
-        $email = mysqli_real_escape_string($this->getConnection(), $email);
-        $password = mysqli_real_escape_string($this->getConnection(), $password);
-
-        $sql = "SELECT * FROM users WHERE email = '$email'";
-        $result = mysqli_query($this->getConnection(), $sql);
-
+        if ($role == 'akun_pencari_kerja') {
+            $sql = "SELECT id, nama, foto_profil, email, gender, tanggal_lahir, password FROM akun_pencari_kerja WHERE email = '$email'";
+        } elseif ($role == 'akun_perusahaan') {
+            $sql = "SELECT id, nama, foto_profil, email, password FROM akun_perusahaan WHERE email = '$email'";
+        } else {
+            return "error : role tidak valid";
+        }
+        
+        $result = mysqli_query($this->get_connection(), $sql);
         if ($result) {
             if (mysqli_num_rows($result) == 1) {
                 $row = mysqli_fetch_assoc($result);
                 if (password_verify($password, $row['password'])) {
-                    $_SESSION['email'] = $email;
-                    $_SESSION['role'] = $row['role'];
+                    $_SESSION['role'] = $role;
                     $_SESSION['id'] = $row['id'];
+                    $_SESSION['nama'] = $row['nama'];
+                    $_SESSION['foto_profil'] = $row['foto_profil'];
+                    $_SESSION['email'] = $row['email'];
 
-                    if ($row['role'] == 'perusahaan') {
-                        header("Location: index_perusahaan.php");
-                    } elseif ($row['role'] == 'pencari_kerja') {
-                        header("Location: index.php");
+                    if ($_SESSION['role'] == "akun_pencari_kerja") {
+                        $_SESSION['gender'] = $row['gender'];
+                        $_SESSION['tanggal_lahir'] = $row['tanggal_lahir'];
+                        $birthDate = new DateTime($_SESSION['tanggal_lahir']);
+                        $currentDate = new DateTime();
+                        $age = $currentDate->diff($birthDate)->y;
+                        $_SESSION['usia'] = $age;
                     }
+
+                    header("Location: index.php");
                     exit();
                 } else {
-                    echo '<script>alert("USERNAME/PASSWORD SALAH!");</script>';
+                    return 'error : password/email salah';
                 }
             } else {
-                echo '<script>alert("USERNAME/PASSWORD SALAH!");</script>';
+                return 'error : password/email salah';
             }
         } else {
-            echo '<script>alert("USERNAME/PASSWORD SALAH!");</script>';
+            return 'error :  mysqli error';
         }
     }
 }
+?>

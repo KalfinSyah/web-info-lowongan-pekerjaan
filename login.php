@@ -2,9 +2,11 @@
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     require_once('./php/logic/Login.php');
     $login = new Login();
-    $login->loginUser($_POST['email'], $_POST['password']);
+    $result = $login->login_user($_POST['role'], $_POST['email'], $_POST['password']);
+    echo $result;
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,6 +19,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <form action="login.php" method="post">
         <section>
             <div>
+                <label for="">Role</label>
+                <select name="role" required>
+                    <option value="akun_pencari_kerja">Pencari Kerja</option>
+                    <option value="akun_perusahaan">Perusahaan</option>
+                </select>
+            </div>
+            <div>
                 <label for="">Email</label>
                 <input type="email" name="email" required>
             </div>
@@ -25,7 +34,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <input type="password" name="password" required>
             </div>
         </section>
-        <p>Belum mempunyai akun? <a href="register.php">klik disini</a></p>
+
+        <p>
+            <a href="register_pencari_kerja.php">buat akun pencari kerja</a>
+             atau
+            <a href="register_perusahaan.php">buat akun perusahaan</a>
+        </p>
         <button type="submit">LOGIN</button>
     </form>
 </body>

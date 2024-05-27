@@ -1,24 +1,22 @@
 <?php
-require_once('./php/logic/SessionChecker.php');
-$sessionChecker = new SessionChecker();
+    require_once('./php/logic/SessionChecker.php');
+    $sessionChecker = new SessionChecker();
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' &&
-    isset($_POST['profesi'], $_POST['posisi'], $_POST['gaji'], $_POST['syaratpendidikan'], 
-        $_POST['lokasi'], $_POST['usiamin'], $_POST['usiamax'], $_POST['prioritasgender'])) {
-
-    require_once('./php/logic/TambahLoker.php');
-    $tambahLoker = new TambahLoker();
-    $tambahLoker->insertDataLoker(
-        $_POST['profesi'],
-        $_POST['posisi'],
-        $_POST['gaji'],
-        $_POST['syaratpendidikan'],
-        $_POST['lokasi'],
-        $_POST['usiamin'],
-        $_POST['usiamax'],
-        $_POST['prioritasgender']
-    );
-}
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        require_once('./php/logic/TambahLoker.php');
+        $tambahLoker = new TambahLoker();
+        $tambahLoker->insertDataLoker(
+            $_POST['profesi'],
+            $_POST['posisi'],
+            $_POST['gaji'],
+            $_POST['syaratpendidikan'],
+            $_POST['lokasi'],
+            $_POST['usiamin'],
+            $_POST['usiamax'],
+            $_POST['prioritasgender'],
+            $_SESSION['id']
+        );
+    }
 ?>
 
 <!DOCTYPE html>
@@ -30,12 +28,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' &&
     <title>Tambah Loker</title>
 </head>
 <body>
-    <?php require_once('./php/template/navbar_perusahaan.php'); ?>
+    <?php require_once('./php/template/navbar.php'); ?>
 
     <div class="container">
-        <h2>Tambah Lowongan Pekerjaan</h2>
 
-        <form action="" method="post">
+        <form action="" method="post" class="formTambahLoker">
+            <h2>Tambah Lowongan Pekerjaan</h2>
+
             <label for="profesi">Profesi</label><br>
             <input type="text" id="profesi" name="profesi" required><br>
 
@@ -61,7 +60,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' &&
             <select id="prioritasgender" name="prioritasgender" required>
                 <option value="Pria">Pria</option>
                 <option value="Wanita">Wanita</option>
-                <option value="Tidak ada">Tidak ada</option>
+                <option value="Tidak Ada">Tidak ada</option>
             </select><br>
 
             <input type="submit" value="Submit">

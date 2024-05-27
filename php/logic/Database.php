@@ -14,7 +14,7 @@
             }
         }
 
-        public function getConnection() {
+        public function get_connection() {
             return $this->conn;
         }
     }

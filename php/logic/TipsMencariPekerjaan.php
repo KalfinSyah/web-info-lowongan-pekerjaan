@@ -6,11 +6,11 @@
             parent::__construct();
         }
 
-        public function getTips() {
+        public function get_tips() {
             $tips = array();
 
-            $sql = "SELECT tips FROM tipsmencaripekerjaan ORDER BY RAND() LIMIT 3";
-            $result = mysqli_query($this->getConnection(), $sql);
+            $sql = "SELECT tips FROM tips_mencari_pekerjaan ORDER BY RAND() LIMIT 3";
+            $result = mysqli_query($this->get_connection(), $sql);
 
             if ($result) {
                 while ($row = mysqli_fetch_assoc($result)) {
@@ -18,7 +18,7 @@
                 }
                 mysqli_free_result($result);
             } else {
-                echo "Error: " . mysqli_error($this->getConnection());
+                echo "Error: " . mysqli_error($this->get_connection());
             }
 
             return $tips;
