@@ -7,7 +7,7 @@
     $pelamar = $mysqliQuery->get_pelamar_by_id_perusahaan($_SESSION['id']);
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        if (isset($_POST['perusahaan_action'])) {
+        if (isset($_POST['perusahaan_action'])) { 
             require_once('./php/logic/Lamaran.php');
             $lamaran = new Lamaran();
             if ($_POST['perusahaan_action'] === 'diterima') {

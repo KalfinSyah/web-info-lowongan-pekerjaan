@@ -53,33 +53,44 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile</title>
+    <link rel="stylesheet" href="css/profile.css">
 </head>
 <body>
-    <form action="" method="post" enctype="multipart/form-data">
-        <input type="hidden" name="id_pencari_kerja" value="<?php echo $_SESSION['id']; ?>">
+    <div class="container">
+        <form action="" method="post" enctype="multipart/form-data" class="profile-form">
+            <input type="hidden" name="id_pencari_kerja" value="<?php echo $_SESSION['id']; ?>">
 
-        <img src="./uploads/foto_profil/<?php echo $_SESSION['role']; ?>/<?php echo $foto_profil; ?>" alt=""> <br><br>
-        <label>(png, max 5mb)</label>
-        <input type="file" name="foto_profil_user" accept=".png"> <br><br>
+            <div class="profile-pic-container">
+                <img src="./uploads/foto_profil/<?php echo $_SESSION['role']; ?>/<?php echo $foto_profil; ?>" alt="Profile Picture" class="profile-pic">
+                <label for="foto_profil_user" class="upload-label">Upload Profile Picture (png, max 5mb)</label>
+                <input type="file" name="foto_profil_user" id="foto_profil_user" accept=".png" class="upload-input"> 
+            </div>
 
-        <label for="">Nama</label>
-        <input type="text" name="nama" id="" value="<?php echo $nama; ?>" required> <br><br>
+            <div class="form-group">
+                <label for="nama">Nama</label>
+                <input type="text" name="nama" id="nama" value="<?php echo $nama; ?>" required>
+            </div>
 
-        <?php if ($_SESSION['role'] == 'akun_pencari_kerja') : ?>
-            <label for="gender">Gender</label>
-            <select name="gender" required>
-                <option value="Pria" <?php if ($gender == 'Pria') echo 'selected'; ?>>Pria</option>
-                <option value="Wanita" <?php if ($gender == 'Wanita') echo 'selected'; ?>>Wanita</option>
-            </select> <br><br>
+            <?php if ($_SESSION['role'] == 'akun_pencari_kerja') : ?>
+                <div class="form-group">
+                    <label for="gender">Gender</label>
+                    <select name="gender" id="gender" required>
+                        <option value="Pria" <?php if ($gender == 'Pria') echo 'selected'; ?>>Pria</option>
+                        <option value="Wanita" <?php if ($gender == 'Wanita') echo 'selected'; ?>>Wanita</option>
+                    </select>
+                </div>
 
-            <label for="">Tanggal Lahir</label>
-            <input type="date" name="tanggal_lahir" id="" value="<?php echo $tanggal_lahir ?>" required> <br>
+                <div class="form-group">
+                    <label for="tanggal_lahir">Tanggal Lahir</label>
+                    <input type="date" name="tanggal_lahir" id="tanggal_lahir" value="<?php echo $tanggal_lahir ?>" required>
+                </div>
 
-            <p>Usia <?php echo $usia; ?></p>
-        <?php endif; ?>
+                <p>Usia: <span class="age"><?php echo $usia; ?></span></p>
+            <?php endif; ?>
 
-        <button type="submit" name="update_profil">Submit Perubahan</button> <br><br>
-    </form>
-    <a href="index.php">Kembali ke index</a>
+            <button type="submit" name="update_profil" class="btn-submit">Submit Perubahan</button>
+            <a href="index.php" class="btn-back">Kembali ke index</a>
+        </form>
+    </div>
 </body>
 </html>

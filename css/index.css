@@ -1,3 +1,88 @@
+.pending {
+    color: #ababab;
+    font-weight: bolder;
+}
+
+.ditolak {
+    color: #ff0000;
+    font-weight: bolder;
+}
+
+.diterima {
+    color: #008000;
+    font-weight: bolder;
+}
+
+
+
+
+/* navbar.css */
+.navbar {
+    background-color: #0066cc;
+    color: #ffffff;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.navbar h1 {
+    margin: 0;
+    font-size: 1.5em;
+    display: flex;
+    align-items: center;
+}
+
+.profile-link {
+    display: flex;
+    align-items: center;
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: bold;
+    margin-left: 10px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.profile-link img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+    transition: transform 0.3s ease;
+}
+
+.profile-link:hover {
+    background-color: #005bb5;
+    color: #ffffff;
+}
+
+.profile-link:hover img {
+    transform: scale(1.1);
+}
+
+.listPages a {
+    color: #ffffff;
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 1em;
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.listPages a:hover {
+    background-color: #005bb5;
+}
+
+.listPages a:active {
+    background-color: #004999;
+}
+
+
+/* general.css */
 body {
     font-family: Arial, sans-serif;
     background-color: #f0f4f8;
@@ -6,19 +91,15 @@ body {
     padding: 0;
 }
 
-.pending {
-    color: #ababab;
-    font-weight: bolder;
-}
-.ditolak {
-    color: #ff0000;
-    font-weight: bolder;
-}
-.diterima {
-    color: #008000; 
-    font-weight: bolder;
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
 }
 
+
+
+/* links.css */
 a.reset, a.apply {
     background-color: #0066cc;
     color: #ffffff;
@@ -40,46 +121,8 @@ a.reset:active, a.apply:active {
     background-color: #004999;
 }
 
-.navbar {
-    background-color: #0066cc;
-    color: #ffffff;
-    padding: 10px 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.navbar h1 {
-    margin: 0;
-    font-size: 1.5em;
-}
-
-.listPages a {
-    color: #ffffff;
-    text-decoration: none;
-    margin: 0 15px;
-    font-size: 1em;
-    padding: 5px 10px;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-}
-
-.listPages a:hover {
-    background-color: #005bb5;
-}
-
-.listPages a:active {
-    background-color: #004999;
-}
-
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
-}
-
-#welcoming {
+/* sections.css */
+#welcoming, .daftarLokerDivHome, .tipsMencariPekerjaanHome, .allDaftarLokerDiv, .formTambahLoker, .allTipsDiv, .historyDiv {
     background-color: #ffffff;
     border-radius: 10px;
     padding: 20px;
@@ -91,14 +134,7 @@ h2 {
     color: #0066cc;
 }
 
-.daftarLokerDivHome, .tipsMencariPekerjaanHome, .allDaftarLokerDiv, .formTambahLoker, .allTipsDiv, .historyDiv {
-    background-color: #ffffff;
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px;
-}
-
+/* tables.css */
 table {
     width: 100%;
     border-collapse: collapse;
@@ -124,7 +160,7 @@ td {
     background-color: #f9f9f9;
 }
 
-
+/* buttons.css */
 button.apply {
     background-color: #0066cc;
     color: #ffffff;
@@ -139,6 +175,7 @@ button.apply:hover {
     background-color: #005bb5;
 }
 
+/* forms.css */
 form input[type="text"], form input[type="number"], form select {
     width: calc(100% - 20px);
     padding: 10px;
