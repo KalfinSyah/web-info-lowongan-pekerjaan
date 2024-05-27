@@ -33,7 +33,7 @@
         <div class="allDaftarLokerDiv">
             <h2>Daftar Lowongan Pekerjaan</h2>
 
-            <form action="apply.php" method="get">
+            <form action="" method="get">
                 <select name="category">
                     <option value="nama">Nama Perusahaan</option>
                     <option value="profesi">Profesi</option>

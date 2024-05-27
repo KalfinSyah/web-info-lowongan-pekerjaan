@@ -28,7 +28,7 @@ if (($_SERVER["REQUEST_METHOD"] == "POST") && isset($_POST["submit"])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Upload CV</title>
-    <link rel="stylesheet" href="css/upload_cv.css">
+    <link rel="stylesheet" href="css/apply.css">
 </head>
 <body>
     <div class="container">
