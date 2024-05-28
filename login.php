@@ -36,12 +36,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
         </section>
 
-        <p>
-            <a href="register_pencari_kerja.php">buat akun pencari kerja</a>,
-            <a href="register_perusahaan.php">buat akun perusahaan</a>,
-            <a href="register_admin.php">buat akun admin</a>
-        </p>
         <button type="submit">LOGIN</button>
+        <p>
+            Belum memiliki akun? buat akun sebagai <br>
+            <a href="register_pencari_kerja.php">Pencari kerja,</a>
+            <a href="register_perusahaan.php">Perusahaan,</a> atau
+            <a href="register_admin.php">Admin</a>
+        </p>
     </form>
 </body>
 </html>

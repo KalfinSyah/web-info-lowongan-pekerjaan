@@ -58,10 +58,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <input type="password" name="konfirmasi_password" required>
             </div>
         </section>
-
-        <p>Sudah mempunyai akun pekerja? <a href="login.php">klik disini</a></p>
-
         <button type="submit">REGISTER</button>
+        <p>Sudah mempunyai akun pekerja? <a href="login.php">Login</a></p>
     </form>
 </body>
 </html>

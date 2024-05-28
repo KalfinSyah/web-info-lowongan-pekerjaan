@@ -25,12 +25,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <form action="register_admin.php" method="post" enctype="multipart/form-data">
         <section>
             <div>
-                <label for="">Foto Profil (png, max 5mb)</label>
-                <input type="file" name="foto_profil_admin" accept=".png" required>
-            </div>
-            <div>
                 <label for="nama">Nama</label>
                 <input type="text" name="nama" required>
+            </div>
+            <div>
+                <label for="">Foto Profil (png, max 5mb)</label>
+                <input type="file" name="foto_profil_admin" accept=".png" required>
             </div>
             <div>
                 <label for="email">Email</label>
@@ -45,10 +45,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <input type="password" name="konfirmasi_password" required>
             </div>
         </section>
-
-        <p>Sudah mempunyai akun? <a href="login.php">klik disini</a></p>
-
         <button type="submit">REGISTER</button>
+        <p>Sudah mempunyai akun? <a href="login.php">Login</a></p>
     </form>
 </body>
 </html>
