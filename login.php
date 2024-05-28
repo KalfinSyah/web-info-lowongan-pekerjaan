@@ -23,6 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <select name="role" required>
                     <option value="akun_pencari_kerja">Pencari Kerja</option>
                     <option value="akun_perusahaan">Perusahaan</option>
+                    <option value="akun_admin">Admin</option>
                 </select>
             </div>
             <div>
@@ -37,8 +38,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         <p>
             <a href="register_pencari_kerja.php">buat akun pencari kerja</a>
-             atau
+            ,
             <a href="register_perusahaan.php">buat akun perusahaan</a>
+            ,
+            <a href="register_admin.php">buat akun admin</a>
         </p>
         <button type="submit">LOGIN</button>
     </form>
