@@ -11,68 +11,68 @@ SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
 
-DROP Database IF EXISTS dbwebinfoloker;
-CREATE Database IF NOT EXISTS dbwebinfoloker;
-USE dbwebinfoloker;
+DROP DATABASE IF EXISTS dbwebinfoloker1;
+CREATE DATABASE IF NOT EXISTS dbwebinfoloker1;
+USE dbwebinfoloker1;
 
 CREATE TABLE `akun_pencari_kerja` (
-  `id` int(11) NOT NULL,
-  `nama` varchar(100) NOT NULL,
-  `tanggal_lahir` date DEFAULT NULL,
-  `gender` enum('Pria','Wanita') DEFAULT NULL,
-  `foto_profil` varchar(255) DEFAULT NULL,
-  `email` varchar(100) NOT NULL,
-  `password` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `id` INT(11) NOT NULL,
+  `nama` VARCHAR(100) NOT NULL,
+  `tanggal_lahir` DATE DEFAULT NULL,
+  `gender` ENUM('Pria','Wanita') DEFAULT NULL,
+  `foto_profil` VARCHAR(255) DEFAULT NULL,
+  `email` VARCHAR(100) NOT NULL,
+  `password` VARCHAR(255) NOT NULL
+) ENGINE=INNODB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 INSERT INTO `akun_pencari_kerja` (`id`, `nama`, `tanggal_lahir`, `gender`, `foto_profil`, `email`, `password`) VALUES
 (1, 'Joni', '2000-01-01', 'Pria', 'profile_664e3a58ec83e3.59570051.png', 'joni@gmail.com', '$2y$10$06TSdaKM3A/AePD7uaWI.eZEeyov8MKXcfMKIV6UwLT8zOdD3iLzG'),
 (2, 'Kalfin', '1999-01-01', 'Pria', 'profile_665367775c6176.26486513.png', 'kalfin@gmail.com', '$2y$10$KECLVJOLZJqOWOgNQnvEP.Bl3l1xVgpBYdw2jcvSPUy7uJ2AjEadK');
 
 CREATE TABLE `akun_perusahaan` (
-  `id` int(11) NOT NULL,
-  `nama` varchar(100) NOT NULL,
-  `foto_profil` varchar(255) DEFAULT NULL,
-  `email` varchar(100) NOT NULL,
-  `password` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `id` INT(11) NOT NULL,
+  `nama` VARCHAR(100) NOT NULL,
+  `foto_profil` VARCHAR(255) DEFAULT NULL,
+  `email` VARCHAR(100) NOT NULL,
+  `password` VARCHAR(255) NOT NULL
+) ENGINE=INNODB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 INSERT INTO `akun_perusahaan` (`id`, `nama`, `foto_profil`, `email`, `password`) VALUES
 (1, 'PT JAYA MAYA', 'profile_66536f334d18c8.00176713.png', 'jayamaya@gmail.com', '$2y$10$ClOmg8QzgDQWJZPEHHea8O0EhngJ5Nt4.9xOAfHitn0rYHHTL3.0y'),
 (2, 'PT SUKSES ABADI', 'profile_664e52621953b9.57012813.png', 'suksesabadi@gmail.com', '$2y$10$lVnQN6LHd0myZIBXmpwZPO8UiYHnDGMLKak6SpF17E.t6GRnEMvau');
 
 CREATE TABLE `history` (
-  `id` int(11) NOT NULL,
-  `waktu_melamar` timestamp NOT NULL DEFAULT current_timestamp(),
-  `id_pencari_kerja` int(11) DEFAULT NULL,
-  `id_perusahaan` int(11) NOT NULL,
-  `id_loker` int(11) DEFAULT NULL,
-  `file_cv` varchar(255) DEFAULT NULL,
-  `file_scan_ktp` varchar(255) DEFAULT NULL,
-  `file_ijazah` varchar(255) DEFAULT NULL,
-  `file_pass_foto` varchar(255) DEFAULT NULL,
-  `file_sertifikat` varchar(255) DEFAULT NULL,
-  `file_portfolio` varchar(255) DEFAULT NULL,
-  `alasan` varchar(255) DEFAULT NULL,
-  `status` enum('diterima','ditolak','pending') DEFAULT 'pending'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `id` INT(11) NOT NULL,
+  `waktu_melamar` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP(),
+  `id_pencari_kerja` INT(11) DEFAULT NULL,
+  `id_perusahaan` INT(11) NOT NULL,
+  `id_loker` INT(11) DEFAULT NULL,
+  `file_cv` VARCHAR(255) DEFAULT NULL,
+  `file_scan_ktp` VARCHAR(255) DEFAULT NULL,
+  `file_ijazah` VARCHAR(255) DEFAULT NULL,
+  `file_pass_foto` VARCHAR(255) DEFAULT NULL,
+  `file_sertifikat` VARCHAR(255) DEFAULT NULL,
+  `file_portfolio` VARCHAR(255) DEFAULT NULL,
+  `alasan` VARCHAR(255) DEFAULT NULL,
+  `status` ENUM('diterima','ditolak','pending') DEFAULT 'pending'
+) ENGINE=INNODB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 INSERT INTO `history` (`id`, `waktu_melamar`, `id_pencari_kerja`, `id_perusahaan`, `id_loker`, `file_cv`, `file_scan_ktp`, `file_ijazah`, `file_pass_foto`, `file_sertifikat`, `file_portfolio`, `alasan`, `status`) VALUES
 (3, '2024-05-23 18:09:04', 1, 1, 1, 'uploads/apply/cv/file_664f864075ca05.83378638.pdf', 'uploads/apply/scan_ktp/file_664f864075e690.98386565.pdf', 'uploads/apply/ijazah/file_664f8640760477.03108759.pdf', 'uploads/apply/pass_foto/file_664f8640761844.76514880.jpg', NULL, NULL, 'Karena saya suka', 'diterima'),
 (6, '2024-05-23 23:28:10', 2, 1, 2, 'uploads/apply/cv/file_664fd10acde214.75888146.pdf', 'uploads/apply/scan_ktp/file_664fd10acdfb49.64722493.pdf', 'uploads/apply/ijazah/file_664fd10ace0772.65178682.pdf', 'uploads/apply/pass_foto/file_664fd10ace1366.28969177.jpg', 'uploads/apply/sertifikat/file_664fd10ace1fc1.44491625.pdf', 'uploads/apply/portfolio/file_664fd10ace2a10.04399567.pdf', 'kayaknya saya bisa', 'diterima');
 
 CREATE TABLE `loker` (
-  `id` int(11) NOT NULL,
-  `id_perusahaan` int(11) NOT NULL,
-  `profesi` varchar(100) DEFAULT NULL,
-  `posisi` varchar(100) DEFAULT NULL,
-  `gaji` decimal(10,2) DEFAULT NULL,
-  `syaratpendidikan` varchar(100) DEFAULT NULL,
-  `lokasi` varchar(100) DEFAULT NULL,
-  `usiamin` int(11) DEFAULT NULL,
-  `usiamax` int(11) DEFAULT NULL,
-  `prioritasgender` varchar(10) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `id` INT(11) NOT NULL,
+  `id_perusahaan` INT(11) NOT NULL,
+  `profesi` VARCHAR(100) DEFAULT NULL,
+  `posisi` VARCHAR(100) DEFAULT NULL,
+  `gaji` DECIMAL(10,2) DEFAULT NULL,
+  `syaratpendidikan` VARCHAR(100) DEFAULT NULL,
+  `lokasi` VARCHAR(100) DEFAULT NULL,
+  `usiamin` INT(11) DEFAULT NULL,
+  `usiamax` INT(11) DEFAULT NULL,
+  `prioritasgender` VARCHAR(10) DEFAULT NULL
+) ENGINE=INNODB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 INSERT INTO `loker` (`id`, `id_perusahaan`, `profesi`, `posisi`, `gaji`, `syaratpendidikan`, `lokasi`, `usiamin`, `usiamax`, `prioritasgender`) VALUES
 (1, 1, 'Web Developer', 'Frontend', 8000000.00, 'S1 Informatika', 'Surabya', 22, 35, 'Tidak Ada'),
@@ -84,9 +84,9 @@ INSERT INTO `loker` (`id`, `id_perusahaan`, `profesi`, `posisi`, `gaji`, `syarat
 (7, 1, 'Desktop App Developer', 'Security', 30000000.00, 'S1 Informatika', 'Surabya', 25, 35, 'Tidak Ada');
 
 CREATE TABLE `tips_mencari_pekerjaan` (
-  `id` int(11) NOT NULL,
-  `tips` text DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `id` INT(11) NOT NULL,
+  `tips` TEXT DEFAULT NULL
+) ENGINE=INNODB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 INSERT INTO `tips_mencari_pekerjaan` (`id`, `tips`) VALUES
 (1, 'Jadilah proaktif dalam mencari pekerjaan.'),
@@ -254,16 +254,16 @@ ALTER TABLE `loker`
   ADD KEY `fk_loker_perusahaan` (`id_perusahaan`);
 
 ALTER TABLE `akun_pencari_kerja`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` INT(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 ALTER TABLE `akun_perusahaan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` INT(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 ALTER TABLE `history`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` INT(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 ALTER TABLE `loker`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` INT(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 ALTER TABLE `history`
   ADD CONSTRAINT `fk_history_loker` FOREIGN KEY (`id_loker`) REFERENCES `loker` (`id`),
@@ -274,3 +274,14 @@ ALTER TABLE `loker`
   ADD CONSTRAINT `fk_loker_perusahaan` FOREIGN KEY (`id_perusahaan`) REFERENCES `akun_perusahaan` (`id`);
 COMMIT;
 
+CREATE TABLE `akun_admin` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `nama` VARCHAR(100) NOT NULL,
+  `email` VARCHAR(100) NOT NULL,
+  `password` VARCHAR(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=INNODB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+INSERT INTO `akun_admin` (`nama`, `email`, `password`) VALUES
+('Admin Satu', 'admin1@example.com', 'password_hash1'),
+('Admin Dua', 'admin2@example.com', 'password_hash2');
