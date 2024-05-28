@@ -3,7 +3,7 @@
         private $host = 'localhost';
         private $username = 'root';
         private $password = '';
-        private $database = 'dbwebinfoloker';
+        private $database = 'dbwebinfoloker1';
         private $conn;
 
         public function __construct() {

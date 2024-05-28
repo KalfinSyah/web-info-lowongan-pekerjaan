@@ -104,7 +104,15 @@ class Register extends Database {
         }
     }
 
-    public function register_admin($nama, $email, $password, $konfirmasi_password) {
+    public function register_admin($foto_profil, $nama, $email, $password, $konfirmasi_password) {
+        $upload_dir = 'uploads/foto_profil/akun_admin/';
+        $allowed_ext = array('png');
+        $max_file_size = 5 * 1024 * 1024;
+        $foto_profil_name = $this->upload_foto_profile($foto_profil, $upload_dir, $allowed_ext, $max_file_size);
+        if ($foto_profil_name === false) {
+            return 'error : foto profil harus berformat .png dan berukuran maksimal 5 MB';
+        }
+
         if (strlen($nama) < 3) {
             return 'error : nama minimal 3 karakter';
         }
@@ -129,7 +137,7 @@ class Register extends Database {
         $email = mysqli_real_escape_string($this->get_connection(), $email);
         $password = mysqli_real_escape_string($this->get_connection(), $password);
         $password_hash = password_hash($password, PASSWORD_DEFAULT);
-        $sql = "INSERT INTO akun_admin (nama, email, password) VALUES ('$nama', '$email', '$password_hash')";
+        $sql = "INSERT INTO akun_admin (nama, email, password, foto_profil) VALUES ('$nama', '$email', '$password_hash', '$foto_profil_name')";
         if (mysqli_query($this->get_connection(), $sql)) {
             header("Location: login.php");
             exit();

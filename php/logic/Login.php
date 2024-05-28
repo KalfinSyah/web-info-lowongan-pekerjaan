@@ -16,7 +16,7 @@ class Login extends Database {
         } elseif ($role == 'akun_perusahaan') {
             $sql = "SELECT id, nama, foto_profil, email, password FROM akun_perusahaan WHERE email = '$email'";
         } elseif ($role == 'akun_admin') {
-            $sql = "SELECT id, nama, email, password FROM akun_admin WHERE email = '$email'";
+            $sql = "SELECT * FROM akun_admin WHERE email = '$email'";
         } else {
             return "error : role tidak valid";
         }
@@ -28,19 +28,17 @@ class Login extends Database {
                 if (password_verify($password, $row['password'])) {
                     $_SESSION['role'] = $role;
                     $_SESSION['id'] = $row['id'];
+                    $_SESSION['foto_profil'] = $row['foto_profil'];
                     $_SESSION['nama'] = $row['nama'];
                     $_SESSION['email'] = $row['email'];
 
                     if ($_SESSION['role'] == "akun_pencari_kerja") {
-                        $_SESSION['foto_profil'] = $row['foto_profil'];
                         $_SESSION['gender'] = $row['gender'];
                         $_SESSION['tanggal_lahir'] = $row['tanggal_lahir'];
                         $birthDate = new DateTime($_SESSION['tanggal_lahir']);
                         $currentDate = new DateTime();
                         $age = $currentDate->diff($birthDate)->y;
                         $_SESSION['usia'] = $age;
-                    } elseif ($_SESSION['role'] == "akun_perusahaan") {
-                        $_SESSION['foto_profil'] = $row['foto_profil'];
                     }
 
                     header("Location: index.php");

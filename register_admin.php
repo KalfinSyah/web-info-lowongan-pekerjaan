@@ -3,6 +3,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     require_once('./php/logic/Register.php');
     $register = new Register();
     $result = $register->register_admin(
+        $_FILES['foto_profil_admin'],
         $_POST['nama'], 
         $_POST['email'], 
         $_POST['password'], 
@@ -21,8 +22,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <title>Register Admin</title>
 </head>
 <body>
-    <form action="register_admin.php" method="post">
+    <form action="register_admin.php" method="post" enctype="multipart/form-data">
         <section>
+            <div>
+                <label for="">Foto Profil (png, max 5mb)</label>
+                <input type="file" name="foto_profil_admin" accept=".png" required>
+            </div>
             <div>
                 <label for="nama">Nama</label>
                 <input type="text" name="nama" required>

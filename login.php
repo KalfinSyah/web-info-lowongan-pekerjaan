@@ -37,10 +37,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </section>
 
         <p>
-            <a href="register_pencari_kerja.php">buat akun pencari kerja</a>
-            ,
-            <a href="register_perusahaan.php">buat akun perusahaan</a>
-            ,
+            <a href="register_pencari_kerja.php">buat akun pencari kerja</a>,
+            <a href="register_perusahaan.php">buat akun perusahaan</a>,
             <a href="register_admin.php">buat akun admin</a>
         </p>
         <button type="submit">LOGIN</button>

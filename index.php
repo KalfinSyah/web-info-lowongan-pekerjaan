@@ -17,7 +17,9 @@
 
 
     <div class="container">
-        <?php if ($_SESSION['role'] == 'akun_pencari_kerja') : ?>
+        <?php if ($_SESSION['role'] == 'akun_admin') : ?>
+            <?php require_once('./php/template/index_admin.php'); ?>
+        <?php elseif ($_SESSION['role'] == 'akun_pencari_kerja') : ?>
             <?php require_once('./php/template/index_pencari_kerja.php'); ?>
         <?php elseif ($_SESSION['role'] == 'akun_perusahaan') : ?>
             <?php require_once('./php/template/index_perusahaan.php'); ?>
