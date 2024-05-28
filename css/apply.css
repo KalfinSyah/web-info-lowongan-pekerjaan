@@ -1,56 +1,74 @@
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f0f4f8;
+    font-family: 'Roboto', sans-serif;
+    background-color: #f5f5f5;
     color: #333;
     margin: 0;
     padding: 0;
 }
 
 .container {
-    max-width: 600px;
-    margin: 20px auto;
-    padding: 20px;
+    max-width: 700px;
+    margin: 40px auto;
+    padding: 30px;
     background-color: #ffffff;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
 }
 
 .container h2 {
     color: #0066cc;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 }
 
 form {
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 }
 
 form input[type="file"] {
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #cccccc;
+    width: 100%;
+    max-width: 675px;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
     border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) inset;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05) inset;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+form textarea {
+    width: 100%;
+    max-width: 675px;
+    min-height: 50px;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05) inset; 
+    resize: vertical; 
+    margin-bottom: 20px;
 }
 
 form button[type="submit"] {
     background-color: #0066cc;
     color: #ffffff;
     border: none;
-    padding: 10px 20px;
+    padding: 12px 24px;
     border-radius: 5px;
     cursor: pointer;
+    width: 100%;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
 form button[type="submit"]:hover {
-    background-color: #005bb5;
+    background-color: #0857a6;
+    box-shadow: 0 7px 14px rgba(67, 160, 71, 0.3), 0 3px 6px rgba(0, 0, 0, 0.2);
 }
 
 a.cancel {
     display: inline-block;
     background-color: #cccccc;
     color: #333;
-    padding: 10px 20px;
+    padding: 12px 24px;
     text-decoration: none;
     border-radius: 5px;
     transition: background-color 0.3s ease;
