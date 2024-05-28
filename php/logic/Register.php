@@ -9,7 +9,7 @@ class Register extends Database {
     public function register_pekerja($nama, $tanggal_lahir, $gender, $foto_profil, $email, $password, $konfirmasi_password) {
         if (strlen($nama) < 4) {
             return 'error : nama minimal 4 karakter';
-        } 
+        }
 
         if (!$this->is_valid_date_format($tanggal_lahir)) {
             return "error : tanggal tidak valid";
@@ -29,7 +29,7 @@ class Register extends Database {
 
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             return 'error : email tidak valid';
-        } 
+        }
 
         if ($this->email_exists($email, 'akun_pencari_kerja')) {
             return 'error : email sudah terdaftar';
@@ -37,11 +37,11 @@ class Register extends Database {
 
         if (strlen($password) < 8) {
             return 'error : password minimal 8 karakter';
-        } 
+        }
 
         if ($password != $konfirmasi_password) {
             return 'error : password dan konfirmasi password tidak sama';
-        } 
+        }
 
         $nama = mysqli_real_escape_string($this->get_connection(), $nama);
         $tanggal_lahir = mysqli_real_escape_string($this->get_connection(), $tanggal_lahir);
@@ -57,11 +57,11 @@ class Register extends Database {
             return 'error :  mysqli error';
         }
     }
-    
+
     public function register_perusahaan($nama, $foto_profil, $email, $password, $konfirmasi_password) {
         if (strlen($nama) < 3) {
             return 'error : nama perusahaan minimal 3 karakter';
-        } 
+        }
 
         if ($this->nama_perusahaan_exists($nama)) {
             return 'error : nama sudah terdaftar';
@@ -77,7 +77,7 @@ class Register extends Database {
 
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             return 'error : email tidak valid';
-        } 
+        }
 
         if ($this->email_exists($email, 'akun_perusahaan')) {
             return 'error : email sudah terdaftar';
@@ -85,11 +85,11 @@ class Register extends Database {
 
         if (strlen($password) < 8) {
             return 'error : password minimal 8 karakter';
-        } 
+        }
 
         if ($password != $konfirmasi_password) {
             return 'error : password dan konfirmasi password tidak sama';
-        }  
+        }
 
         $nama = mysqli_real_escape_string($this->get_connection(), $nama);
         $email = mysqli_real_escape_string($this->get_connection(), $email);
@@ -104,12 +104,48 @@ class Register extends Database {
         }
     }
 
+    public function register_admin($nama, $email, $password, $konfirmasi_password) {
+        if (strlen($nama) < 3) {
+            return 'error : nama minimal 3 karakter';
+        }
+
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            return 'error : email tidak valid';
+        }
+
+        if ($this->email_exists($email, 'akun_admin')) {
+            return 'error : email sudah terdaftar';
+        }
+
+        if (strlen($password) < 8) {
+            return 'error : password minimal 8 karakter';
+        }
+
+        if ($password != $konfirmasi_password) {
+            return 'error : password dan konfirmasi password tidak sama';
+        }
+
+        $nama = mysqli_real_escape_string($this->get_connection(), $nama);
+        $email = mysqli_real_escape_string($this->get_connection(), $email);
+        $password = mysqli_real_escape_string($this->get_connection(), $password);
+        $password_hash = password_hash($password, PASSWORD_DEFAULT);
+        $sql = "INSERT INTO akun_admin (nama, email, password) VALUES ('$nama', '$email', '$password_hash')";
+        if (mysqli_query($this->get_connection(), $sql)) {
+            header("Location: login.php");
+            exit();
+        } else {
+            return 'error : mysqli error';
+        }
+    }
+
     protected function email_exists($email, $table) {
         $email = mysqli_real_escape_string($this->get_connection(), $email);
         if ($table == 'akun_perusahaan') {
             $sql = "SELECT * FROM akun_perusahaan WHERE email = '$email'";
         } elseif ($table == 'akun_pencari_kerja') {
             $sql = "SELECT * FROM akun_pencari_kerja WHERE email = '$email'";
+        } elseif ($table == 'akun_admin') {
+            $sql = "SELECT * FROM akun_admin WHERE email = '$email'";
         }
 
         $result = mysqli_query($this->get_connection(), $sql);
