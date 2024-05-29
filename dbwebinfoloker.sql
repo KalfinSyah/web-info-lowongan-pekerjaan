@@ -11,9 +11,9 @@ SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
 
-DROP DATABASE IF EXISTS dbwebinfoloker1;
-CREATE DATABASE IF NOT EXISTS dbwebinfoloker1;
-USE dbwebinfoloker1;
+DROP DATABASE IF EXISTS dbwebinfoloker;
+CREATE DATABASE IF NOT EXISTS dbwebinfoloker;
+USE dbwebinfoloker;
 
 CREATE TABLE `akun_pencari_kerja` (
   `id` INT(11) NOT NULL,
@@ -275,13 +275,12 @@ ALTER TABLE `loker`
 COMMIT;
 
 CREATE TABLE `akun_admin` (
-  `id` INT(11) NOT NULL AUTO_INCREMENT,
-  `nama` VARCHAR(100) NOT NULL,
-  `email` VARCHAR(100) NOT NULL,
-  `password` VARCHAR(255) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=INNODB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `id` int(11) NOT NULL,
+  `nama` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `foto_profil` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-INSERT INTO `akun_admin` (`nama`, `email`, `password`) VALUES
-('Admin Satu', 'admin1@example.com', 'password_hash1'),
-('Admin Dua', 'admin2@example.com', 'password_hash2');
+INSERT INTO `akun_admin` (`id`, `nama`, `email`, `password`, `foto_profil`) VALUES
+(5, 'admin', 'admin@gmail.com', '$2y$10$oe4qRtrBj//rEXGyYiZuQOnE6d77ENz6d8G4rptBNwWxX/zB0IWK.', 'profile_6656d6c84673f5.98625958.png');
