@@ -20,14 +20,14 @@
                     $_POST['tanggal_lahir'],
                     $_POST['gender'],
                     $_FILES['foto_profil_user'], 
-                    $_POST['id_pencari_kerja']
+                    $_POST['id_user']
                 );
             } else {
                 $updateProfile->update_pencari_kerja_profile_without__foto_profile(
                     $_POST['nama'],
                     $_POST['tanggal_lahir'],
                     $_POST['gender'],
-                    $_POST['id_pencari_kerja']
+                    $_POST['id_user']
                 );
             }
         } elseif ($_SESSION['role'] == 'akun_perusahaan') {
@@ -35,12 +35,25 @@
                 $updateProfile->update_perusahaan_profile_with__foto_profile(
                     $_POST['nama'],
                     $_FILES['foto_profil_user'], 
-                    $_POST['id_pencari_kerja']
+                    $_POST['id_user']
                 );
             } else {
                 $updateProfile->update_perusahaan_profile_without__foto_profile(
                     $_POST['nama'],
-                    $_POST['id_pencari_kerja']
+                    $_POST['id_user']
+                );
+            }
+        }  elseif ($_SESSION['role'] == 'akun_admin') {
+            if (!empty($_FILES['foto_profil_user']['name'])) {
+                $updateProfile->update_admin_profile_with__foto_profile(
+                    $_POST['nama'],
+                    $_FILES['foto_profil_user'], 
+                    $_POST['id_user']
+                );
+            } else {
+                $updateProfile->update_admin_profile_without__foto_profile(
+                    $_POST['nama'],
+                    $_POST['id_user']
                 );
             }
         }
@@ -58,7 +71,7 @@
 <body>
     <div class="container">
         <form action="" method="post" enctype="multipart/form-data" class="profile-form">
-            <input type="hidden" name="id_pencari_kerja" value="<?php echo $_SESSION['id']; ?>">
+            <input type="hidden" name="id_user" value="<?php echo $_SESSION['id']; ?>">
 
             <div class="profile-pic-container">
                 <img src="./uploads/foto_profil/<?php echo $_SESSION['role']; ?>/<?php echo $foto_profil; ?>" alt="Profile Picture" class="profile-pic">
