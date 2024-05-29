@@ -6,6 +6,36 @@ class MysqliQuery extends Database {
         parent::__construct();
     }
 
+    public function get_akun_perusahaan_for_index_admin() {
+        $status = array();
+        $sql = "SELECT * FROM akun_perusahaan";
+        $result = mysqli_query($this->get_connection(), $sql);
+        if ($result) {
+            while ($row = mysqli_fetch_assoc($result)) {
+                $status[] = $row;
+            }
+            mysqli_free_result($result);
+        } else {
+            return "error : mysqli error";
+        }
+        return $status;      
+    }
+
+    public function get_akun_pencari_kerja_for_index_admin() {
+        $status = array();
+        $sql = "SELECT * FROM akun_pencari_kerja";
+        $result = mysqli_query($this->get_connection(), $sql);
+        if ($result) {
+            while ($row = mysqli_fetch_assoc($result)) {
+                $status[] = $row;
+            }
+            mysqli_free_result($result);
+        } else {
+            return "error : mysqli error";
+        }
+        return $status;      
+    }
+
     public function get_pencari_kerja_gender_by_id_pencari_kerja($id) {
         $sql = "SELECT gender FROM akun_pencari_kerja WHERE id = '$id'";
         $result = mysqli_query($this->get_connection(), $sql);

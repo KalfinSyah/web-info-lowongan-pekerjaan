@@ -30,4 +30,18 @@
             <a href="./php/logic/Logout.php">Logout</a>
         </div>
     </div>
+<?php elseif ($_SESSION['role'] == 'akun_admin') : ?>
+    <div class='navbar'>
+        <h1>         
+            <a class="profile-link" href="profile.php">
+                <img src="uploads/foto_profil/akun_admin/<?php echo $_SESSION['foto_profil']; ?>" alt="">
+                <?php echo $_SESSION['nama']; ?>
+            </a> 
+        </h1>
+        <div class="listPages">
+            <a href='index.php'>Home</a>
+            <a href="tambah_tips_mencari_pekerjaan.php">Tambah Tips Mencari Pekerjaan</a>
+            <a href="./php/logic/Logout.php">Logout</a>
+        </div>
+    </div>
 <?php endif; ?>
