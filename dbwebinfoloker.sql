@@ -275,12 +275,12 @@ ALTER TABLE `loker`
 COMMIT;
 
 CREATE TABLE `akun_admin` (
-  `id` int(11) NOT NULL,
-  `nama` varchar(100) NOT NULL,
-  `email` varchar(100) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  `foto_profil` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `id` INT(11) NOT NULL,
+  `nama` VARCHAR(100) NOT NULL,
+  `email` VARCHAR(100) NOT NULL,
+  `password` VARCHAR(255) NOT NULL,
+  `foto_profil` VARCHAR(255) DEFAULT NULL
+) ENGINE=INNODB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 INSERT INTO `akun_admin` (`id`, `nama`, `email`, `password`, `foto_profil`) VALUES
 (5, 'admin', 'admin@gmail.com', '$2y$10$oe4qRtrBj//rEXGyYiZuQOnE6d77ENz6d8G4rptBNwWxX/zB0IWK.', 'profile_6656d6c84673f5.98625958.png');

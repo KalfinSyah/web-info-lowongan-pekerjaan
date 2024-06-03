@@ -16,33 +16,43 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <title>Login</title>
 </head>
 <body>
-    <form action="login.php" method="post">
-        <section>
-            <div>
-                <label for="">Role</label>
-                <select name="role" required>
-                    <option value="akun_pencari_kerja">Pencari Kerja</option>
-                    <option value="akun_perusahaan">Perusahaan</option>
-                    <option value="akun_admin">Admin</option>
-                </select>
-            </div>
-            <div>
-                <label for="">Email</label>
-                <input type="email" name="email" required>
-            </div>
-            <div>
-                <label for="">Password</label>
-                <input type="password" name="password" required>
-            </div>
-        </section>
+    <div class="video-background">
+        <video autoplay muted loop id="vidbg">
+            <source src="vidbglogin.mp4" type="video/mp4">
+        </video>
+    </div>
+    <div class="form-container">
+        <form action="login.php" method="post">
+            <section>
+                <div>
+                    <label for="role">Role</label>
+                    <select name="role" id="role" required>
+                        <option value="akun_pencari_kerja">Pencari Kerja</option>
+                        <option value="akun_perusahaan">Perusahaan</option>
+                        <option value="akun_admin">Admin</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="email">Email</label>
+                    <input type="email" name="email" id="email" required>
+                </div>
+                <div>
+                    <label for="password">Password</label>
+                    <input type="password" name="password" id="password" required>
+                </div>
+            </section>
 
-        <button type="submit">LOGIN</button>
-        <p>
-            Belum memiliki akun? buat akun sebagai <br>
-            <a href="register_pencari_kerja.php">Pencari kerja,</a>
-            <a href="register_perusahaan.php">Perusahaan,</a> atau
-            <a href="register_admin.php">Admin</a>
-        </p>
-    </form>
+            <button type="submit">LOGIN</button>
+            <p>
+                Belum memiliki akun? buat akun sebagai <br>
+                <a href="register_pencari_kerja.php">Pencari kerja,</a>
+                <a href="register_perusahaan.php">Perusahaan,</a> atau
+                <a href="register_admin.php">Admin</a>
+            </p>
+        </form>
+    </div>
+    <div class="logo-container">
+        <img src="joblogo.png" alt="Logo">
+    </div>
 </body>
 </html>
