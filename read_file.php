@@ -11,7 +11,7 @@
             $readPDF = new ReadPDF($_POST['lihat_file_pdf']);
         } elseif (isset($_POST["lihat_file_jpg"])) {
             require_once('./php/logic/ReadJPG.php');
-            $readPDF = new ReadPDF($_POST['lihat_file_jpg']);
+            $readPDF = new ReadJPG($_POST['lihat_file_jpg']);
         }
     }
 ?>

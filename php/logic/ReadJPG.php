@@ -1,5 +1,5 @@
 <?php
-class ReadPDF {
+class ReadJPG {
     public function __construct($file_path) {
         header('Content-Type: image/jpeg');
         header('Content-Disposition: inline; filename="' . basename($file_path) . '"');
