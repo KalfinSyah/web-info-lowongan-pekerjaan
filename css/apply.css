@@ -1,6 +1,25 @@
+
+
+.bg-warna-1{
+    background-color: #F2F7FF;
+}
+
+.bg-warna-2{
+    background-color: #0B409C;
+}
+
+.bg-warna-3{
+    background-color: #10316B;
+}
+
+.bg-warna-4{
+    background-color: #FDBE34;
+}
+
+
 body {
     font-family: 'Roboto', sans-serif;
-    background-color: #f5f5f5;
+    background-color: #FDBE34;
     color: #333;
     margin: 0;
     padding: 0;

@@ -30,7 +30,7 @@ if (($_SERVER["REQUEST_METHOD"] == "POST") && isset($_POST["submit"])) {
     <title>Upload Data</title>
     <link rel="stylesheet" href="css/apply.css">
 </head>
-<body>
+<body class="bg-warna-4">
     <div class="container">
         <h2>Upload Data Yang Diperlukan</h2>
 

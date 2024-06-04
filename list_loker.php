@@ -26,7 +26,7 @@
     <link rel="stylesheet" href="css/index.css">
     <title>List Loker</title>
 </head>
-<body>
+<body class="bg-warna-4">
     <?php require_once('./php/template/navbar.php'); ?>
     
     <div class="container">
