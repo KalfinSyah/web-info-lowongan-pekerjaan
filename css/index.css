@@ -13,9 +13,29 @@
     font-weight: bolder;
 }
 
+/* width */
+::-webkit-scrollbar {
+    width: 5px;
+}
+  
+  /* Track */
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey;
+    border-radius: 10px;
+}
+  
+  /* Handle */
+::-webkit-scrollbar-thumb {
+    background: #848484;
+    border-radius: 10px;
+}
+
+.bg-office {
+    background-image: url("../img/office-bg.jpg");
+}
 
 .bg-warna-1{
-    background-color: #F2F7FF;
+    background-color: #f2f7ff;
 }
 
 .bg-warna-2{
@@ -30,7 +50,88 @@
     background-color: #FDBE34;
 }
 
+.ip-con {
+    display: grid;
+    gap: 20px;
+    grid-template-areas: 
+        'k t1'
+        'k t2';
+}
+.ip-ket {
+    grid-area: k;
+    text-align: justify;
+    background-color: rgba(242, 247, 255, 0.9);
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: fit-content;
+    font-weight: bold;
+    font-size: medium;
 
+}
+.ip-dlp {
+    grid-area: t1;
+    align-self: flex-start;
+} 
+.ip-h {
+    grid-area: t2;
+}
+
+#ipk-welcoming, .ipk-dlp-title, .ipk-tmp,
+.ip-dlp-title, .ip-h-title {
+    background-color: rgba(242, 247, 255, 0.8);
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    width: fit-content;
+}
+#ipk-welcoming {
+    font-weight: bold;
+    font-size: medium;
+}
+.ipk-dlp-title, .ip-dlp-title, .ip-h-title {
+    color: #f2f7ff;
+    background-color: rgb(11, 64, 156);
+    border: 3px solid #FDBE34;
+}
+.index-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 16px;
+    text-align: left;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-weight: 600;
+    width: fit-content;
+}
+
+.index-table thead tr {
+    background-color: #0b409c;
+    color: #ffffff;
+}
+.index-table th,   
+.index-table td {
+    padding: 12px 15px;
+    border: 3px solid #FDBE34;
+}
+.index-table tbody tr {
+    background-color: #ffffff;
+    transition: background-color 0.3s ease;
+}
+.index-table tbody td {
+    border: 1px solid #dddddd;
+}
+.index-table th {
+    font-weight: bold;
+}
+.ipk-tmp {
+    max-height: 295px;
+    overflow-y: scroll;
+}
+.ipk-tmp h2 {
+    margin-top: 0;
+}
 /* navbar.css */
 .navbar {
     background-color: #0066cc;
@@ -104,6 +205,7 @@ body {
     color: #333;
     margin: 0;
     padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .container {

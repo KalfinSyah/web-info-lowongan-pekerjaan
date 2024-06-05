@@ -4,11 +4,11 @@
     $loker = $mysqliQuery->get_loker_for_index_pencari_kerja();
 ?>
 
-<p id="welcoming"> Selamat datang di tempat di mana Anda dapat menjelajahi peluang karier yang menarik dan mendapatkan wawasan berharga tentang bagaimana mencari pekerjaan yang sesuai dengan keinginan dan keterampilan Anda. Di sini, Anda akan menemukan beragam lowongan pekerjaan yang menantang, serta tip-tips berguna untuk memperkuat strategi pencarian pekerjaan Anda. Mari bergabung dalam perjalanan menuju kesuksesan karier Anda, dan bersama-sama kita akan membuka pintu-pintu menuju masa depan yang cerah!</p>
+<p id="ipk-welcoming"> Selamat datang di tempat di mana Anda dapat menjelajahi peluang karier yang menarik dan mendapatkan wawasan berharga tentang bagaimana mencari pekerjaan yang sesuai dengan keinginan dan keterampilan Anda. Di sini, Anda akan menemukan beragam lowongan pekerjaan yang menantang, serta tip-tips berguna untuk memperkuat strategi pencarian pekerjaan Anda. Mari bergabung dalam perjalanan menuju kesuksesan karier Anda, dan bersama-sama kita akan membuka pintu-pintu menuju masa depan yang cerah!</p>
                 
-<div class="daftarLokerDivHome">
-    <h2>Daftar Lowongan Pekerjaan</h2>
-    <table>
+<div>
+    <h2 class="ipk-dlp-title">Daftar Lowongan Pekerjaan</h2>
+    <table class="index-table">
         <thead>
             <tr>
                 <th>Nama Perusahaan</th>
@@ -34,7 +34,7 @@
     </table>
 </div>
     
-<div class="tipsMencariPekerjaanHome">
+<div class="ipk-tmp">
     <h2>Tips Mencari Pekerjaan</h2>
     <p>Melangkah ke dunia pekerjaan yang dinamis seringkali membutuhkan lebih dari sekadar menyerahkan resume Anda. Inilah saatnya untuk mengasah strategi pencarian pekerjaan Anda sehingga Anda tidak hanya mencari pekerjaan, tetapi juga menempatkan diri Anda di jalur yang tepat untuk sukses.</p>
     <h3>1. Pahami Diri Anda</h3>
