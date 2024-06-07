@@ -22,6 +22,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <title>Register</title>
 </head>
 <body>
+        <div class="video-background">
+            <video autoplay muted loop id="vidbg">
+                <source src="vidbglogin.mp4" type="video/mp4">
+            </video>
+        </div>
     <form action="register_perusahaan.php" method="post" enctype="multipart/form-data">
         <section>
             <div>
@@ -48,5 +53,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <button type="submit">REGISTER</button>
         <p>Sudah mempunyai akun perusahaan? <a href="login.php">Login</a></p>
     </form>
+            <div class="logo-container">
+                <img src="joblogo.png" alt="Logo">
+            </div>
 </body>
 </html>
