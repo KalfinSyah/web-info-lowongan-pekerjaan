@@ -23,7 +23,7 @@
     <div class="container">
 
         <form action="" method="post" class="formTambahLoker">
-            <h2>Tambah Lowongan Pekerjaan</h2>
+            <h2>Tambah Tips Mencari Pekerjaan</h2>
 
             <label for="profesi">Tips</label><br><br>
             <textarea name="tips" id=""></textarea><br><br>
