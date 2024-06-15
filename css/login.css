@@ -64,8 +64,17 @@ form label {
     color: #666;
 }
 
-form input[type="email"], form input[type="password"], form select {
+form input[type="email"], form input[type="password"] {
     width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05) inset;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+form select {
+    width: 108%;
     padding: 12px;
     border: 1px solid #ddd;
     border-radius: 5px;

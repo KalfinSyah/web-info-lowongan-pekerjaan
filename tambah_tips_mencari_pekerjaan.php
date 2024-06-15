@@ -17,16 +17,14 @@
     <link rel="stylesheet" href="css/index.css">
     <title>Tambah Tips Mencari Pekerjaan</title>
 </head>
-<body>
+<body class="bg-warna-5">
     <?php require_once('./php/template/navbar.php'); ?>
 
     <div class="container">
 
         <form action="" method="post" class="formTambahLoker">
             <h2>Tambah Tips Mencari Pekerjaan</h2>
-
-            <label for="profesi">Tips</label><br><br>
-            <textarea name="tips" id=""></textarea><br><br>
+            <textarea name="tips" placeholder="Tulis tips untuk mencari pekerjaan Anda di sini..."></textarea><br><br>
 
             <input type="submit" value="Submit">
         </form>
