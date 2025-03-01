@@ -1,16 +1,3 @@
--- phpMyAdmin SQL Dump
--- version 5.2.1
--- https://www.phpmyadmin.net/
---
--- Host: 127.0.0.1
--- Generation Time: May 27, 2024 at 10:58 PM
--- Server version: 10.4.32-MariaDB
--- PHP Version: 8.0.30
-
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-START TRANSACTION;
-SET time_zone = "+00:00";
-
 DROP DATABASE IF EXISTS dbwebinfoloker;
 CREATE DATABASE IF NOT EXISTS dbwebinfoloker;
 USE dbwebinfoloker;
@@ -23,7 +10,7 @@ CREATE TABLE `akun_pencari_kerja` (
   `foto_profil` VARCHAR(255) DEFAULT NULL,
   `email` VARCHAR(100) NOT NULL,
   `password` VARCHAR(255) NOT NULL
-) ENGINE=INNODB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+);
 
 INSERT INTO `akun_pencari_kerja` (`id`, `nama`, `tanggal_lahir`, `gender`, `foto_profil`, `email`, `password`) VALUES
 (1, 'Joni', '2000-01-01', 'Pria', 'profile_664e3a58ec83e3.59570051.png', 'joni@gmail.com', '$2y$10$06TSdaKM3A/AePD7uaWI.eZEeyov8MKXcfMKIV6UwLT8zOdD3iLzG'),
@@ -35,7 +22,7 @@ CREATE TABLE `akun_perusahaan` (
   `foto_profil` VARCHAR(255) DEFAULT NULL,
   `email` VARCHAR(100) NOT NULL,
   `password` VARCHAR(255) NOT NULL
-) ENGINE=INNODB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+);
 
 INSERT INTO `akun_perusahaan` (`id`, `nama`, `foto_profil`, `email`, `password`) VALUES
 (1, 'PT JAYA MAYA', 'profile_66536f334d18c8.00176713.png', 'jayamaya@gmail.com', '$2y$10$ClOmg8QzgDQWJZPEHHea8O0EhngJ5Nt4.9xOAfHitn0rYHHTL3.0y'),
@@ -55,7 +42,7 @@ CREATE TABLE `history` (
   `file_portfolio` VARCHAR(255) DEFAULT NULL,
   `alasan` VARCHAR(255) DEFAULT NULL,
   `status` ENUM('diterima','ditolak','pending') DEFAULT 'pending'
-) ENGINE=INNODB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+);
 
 INSERT INTO `history` (`id`, `waktu_melamar`, `id_pencari_kerja`, `id_perusahaan`, `id_loker`, `file_cv`, `file_scan_ktp`, `file_ijazah`, `file_pass_foto`, `file_sertifikat`, `file_portfolio`, `alasan`, `status`) VALUES
 (3, '2024-05-23 18:09:04', 1, 1, 1, 'uploads/apply/cv/file_664f864075ca05.83378638.pdf', 'uploads/apply/scan_ktp/file_664f864075e690.98386565.pdf', 'uploads/apply/ijazah/file_664f8640760477.03108759.pdf', 'uploads/apply/pass_foto/file_664f8640761844.76514880.jpg', NULL, NULL, 'Karena saya suka', 'diterima'),
@@ -72,7 +59,7 @@ CREATE TABLE `loker` (
   `usiamin` INT(11) DEFAULT NULL,
   `usiamax` INT(11) DEFAULT NULL,
   `prioritasgender` VARCHAR(10) DEFAULT NULL
-) ENGINE=INNODB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+);
 
 INSERT INTO `loker` (`id`, `id_perusahaan`, `profesi`, `posisi`, `gaji`, `syaratpendidikan`, `lokasi`, `usiamin`, `usiamax`, `prioritasgender`) VALUES
 (1, 1, 'Web Developer', 'Frontend', 8000000.00, 'S1 Informatika', 'Surabya', 22, 35, 'Tidak Ada'),
@@ -86,7 +73,7 @@ INSERT INTO `loker` (`id`, `id_perusahaan`, `profesi`, `posisi`, `gaji`, `syarat
 CREATE TABLE `tips_mencari_pekerjaan` (
   `id` INT(11) NOT NULL,
   `tips` TEXT DEFAULT NULL
-) ENGINE=INNODB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+);
 
 INSERT INTO `tips_mencari_pekerjaan` (`id`, `tips`) VALUES
 (1, 'Jadilah proaktif dalam mencari pekerjaan.'),
@@ -280,7 +267,7 @@ CREATE TABLE `akun_admin` (
   `email` VARCHAR(100) NOT NULL,
   `password` VARCHAR(255) NOT NULL,
   `foto_profil` VARCHAR(255) DEFAULT NULL
-) ENGINE=INNODB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+);
 
 INSERT INTO `akun_admin` (`id`, `nama`, `email`, `password`, `foto_profil`) VALUES
 (5, 'admin', 'admin@gmail.com', '$2y$10$oe4qRtrBj//rEXGyYiZuQOnE6d77ENz6d8G4rptBNwWxX/zB0IWK.', 'profile_6656d6c84673f5.98625958.png');
